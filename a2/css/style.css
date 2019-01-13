@@ -1,9 +1,32 @@
+html {
+  scroll-behavior: smooth;
+}
+
+.grid-container{
+    display: grid;
+    grid-template-areas:
+    'header header header'
+    'nav nav nav'
+    'main main main'
+    'footer footer footer';
+    padding-left: 10%;
+    padding-right: 10%;
+    min-width: 1000px;
+}
+
 body{
     font-family: 'Quicksand', sans-serif;
+    background: #ffa76d;
 }
 
 header{
-    position: sticky;
+    height: 200px;
+    grid-area: header;
+    position: static;
+    background-image: linear-gradient(to bottom right, #6cd5ff, #6c98ff);
+    border: 3px black solid;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
 }
 
 .Logo{
@@ -13,56 +36,127 @@ header{
 .Title{
     font-family: 'Vibur', cursive;
     font-size: 8em;
+    text-shadow: 2px 2px white;
     float: right;
+    padding: 20px;
+
+}
+nav{
+    grid-area: nav;
+    text-transform: uppercase;
+    background: white;
+    height: 50px;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    padding-top: 5px;
+    border-left: 3px black solid;
+    border-right: 3px black solid;
 }
 
-nav{
-    text-transform: uppercase;
-    background-color: #4CAF50;
-    border: none;
+.NavButton {
+    background-color: #ff6ca2;
     color: white;
-    padding: 15px 32px;
+    padding: 15px 30px;
     text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    color: black;
     display: inline-block;
     font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
+    border-radius: 25px;
+}
+main{
+    background-color: white;
+    padding: 10px;
+    border-left: 3px black solid;
+    border-right: 3px black solid;
 }
 
+.SectionHeading{
+    font-family: 'Quicksand';
+    font-size: 3em;
+    text-align:center;
+    background-color: #b0b6c4;
+}
 
+.SectionContent{
+    background: white;
+    padding: 30px 10%;
+    text-align: center;
+    align-items: center;
+    font-size: 1.5em;
+}
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+#NowShowing{
+    text-align: center;
+}
 
 #AboutUs{
-
+    margin-top: -60px;
+    padding-top: 60px;
+    min-height: 100vh;
 }
 
 #SeatPricing{
+    margin-top: -60px;
+    padding-top: 60px;
+    min-height: 100vh;
 }
 
 #NowShowing{
-
-}
-
-#Synopsis{
-
+    margin-top: -60px;
+    padding-top: 60px;
+    min-height: 100vh;
 }
 
 #Booking{
-
+    margin-top: -60px;
+    padding-top: 60px;
+    min-height: 100vh;
 }
 
-
-table {
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
+.Movie{
+    width: 20%;
+    height: 630px;
+    background: white;
+    border: 1px black solid;
+    display: inline-block;
+    vertical-align:top;
+    padding: 5px;
 }
 
-td, th {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
+.MoviePoster{
+    width: 100%;
 }
 
-tr:nth-child(even) {
-  background-color: #dddddd;
+.Synopsis{
+    background: white;
+    padding: 20px;
+    border: 1px black solid;
+}
+
+footer{
+    font-size: 0.8em;
+    grid-area:footer;
+    padding: 20px;
+    background: #a2ff6c;
+    border: 3px black solid;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
 }
