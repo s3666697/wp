@@ -9,14 +9,15 @@ html {
     'nav nav nav'
     'main main main'
     'footer footer footer';
-    padding-left: 10%;
-    padding-right: 10%;
-    min-width: 1000px;
+    min-width: 830px;
+    max-width:1400px;
+    padding: auto;
+    margin: auto;
 }
 
 body{
     font-family: 'Quicksand', sans-serif;
-    background: #ffa76d;
+    background-image: radial-gradient(circle, #ffa76d, #ffc987);
 }
 
 header{
@@ -27,6 +28,7 @@ header{
     border: 3px black solid;
     border-top-left-radius: 30px;
     border-top-right-radius: 30px;
+    vertical-align: middle;
 }
 
 .Logo{
@@ -35,12 +37,31 @@ header{
 
 .Title{
     font-family: 'Vibur', cursive;
+    font-size: 9em;
+    text-shadow: 2px 2px white;
+    float: right;
+}
+
+@media screen and (min-width: 1001px){
+    .Title{
+    font-family: 'Vibur', cursive;
     font-size: 8em;
     text-shadow: 2px 2px white;
     float: right;
     padding: 20px;
-
+    }
 }
+
+@media screen and (max-width: 1000px){
+    .Title{
+    font-family: 'Vibur', cursive;
+    font-size: 6.5em;
+    text-shadow: 2px 2px white;
+    float: right;
+    padding: 20px;
+    }
+}
+
 nav{
     grid-area: nav;
     text-transform: uppercase;
@@ -50,12 +71,13 @@ nav{
     position: sticky;
     top: 0;
     padding-top: 5px;
+    padding-bottom: 5px;
     border-left: 3px black solid;
     border-right: 3px black solid;
 }
 
 .NavButton {
-    background-color: #ff6ca2;
+    background-color: #ffb5ce;
     color: white;
     padding: 15px 30px;
     text-align: center;
@@ -66,9 +88,10 @@ nav{
     font-size: 16px;
     border-radius: 25px;
 }
+
 main{
     background-color: white;
-    padding: 10px;
+    padding: 5px;
     border-left: 3px black solid;
     border-right: 3px black solid;
 }
@@ -76,8 +99,9 @@ main{
 .SectionHeading{
     font-family: 'Quicksand';
     font-size: 3em;
+    color: white;
     text-align:center;
-    background-color: #b0b6c4;
+    background-color: black;
 }
 
 .SectionContent{
@@ -86,25 +110,6 @@ main{
     text-align: center;
     align-items: center;
     font-size: 1.5em;
-}
-
-table {
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
-    width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-}
-td, th {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 8px;
-}
-tr:nth-child(even) {
-    background-color: #dddddd;
-}
-#NowShowing{
-    text-align: center;
 }
 
 #AboutUs{
@@ -119,10 +124,103 @@ tr:nth-child(even) {
     min-height: 100vh;
 }
 
+table {
+    font-family: arial, sans-serif;
+    font-size: 1em;
+    border-collapse: collapse;
+    margin-left: auto;
+    margin-right: auto;
+}
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+.SeatCode{
+    display:none;
+}
+
 #NowShowing{
     margin-top: -60px;
     padding-top: 60px;
     min-height: 100vh;
+    text-align: center;
+}
+
+.Movie{
+    width: 300px;
+    height: 700px;
+    background: white;
+    border: 2px black solid;
+    display: inline-block;
+    vertical-align:top;
+    padding: 5px;
+    margin-top: 30px;
+    text-align: left;
+}
+
+.MoviePoster{
+    width: 100%;
+}
+
+.MovieTitle{
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.MovieRating{
+    font-size: 1.0em;
+    font-weight: bold;
+    background: #ffffa8;
+}
+
+.MovieSessionsTitle{
+    font-size: 1.0em;
+    font-weight: bold;
+}
+
+.MovieSessions{
+    font-weight:normal;
+}
+
+.Synopsis{
+    background: white;
+    margin: 30px 10%;
+    border: 1px black solid;
+}
+
+.MovieSynopsis{
+    margin: 20px;
+}
+
+.MovieTrailer{
+    display:block;
+    margin: 20px auto;
+}
+
+.MakeABooking{
+    font-size: 1.5em;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.SessionTimesButton {
+    background-color: #a8c9ff;
+    color: white;
+    border: 0px;
+    padding: 10px 30px;
+    margin-bottom: 10px;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    color: black;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 10px;
 }
 
 #Booking{
@@ -131,31 +229,38 @@ tr:nth-child(even) {
     min-height: 100vh;
 }
 
-.Movie{
-    width: 20%;
-    height: 630px;
-    background: white;
-    border: 1px black solid;
-    display: inline-block;
-    vertical-align:top;
-    padding: 5px;
+.MakeBookingForm{
+    width=100%;
+    margin: 50px auto 0px;
 }
 
-.MoviePoster{
-    width: 100%;
+input, select {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    width: 80%;
+    height: 40px;
+    margin: 10px;
+    margin: 0 auto;
 }
 
-.Synopsis{
-    background: white;
-    padding: 20px;
-    border: 1px black solid;
+input[name=order] {
+    background-color: #30d367;
+    font-family: 'Quicksand', sans-serif;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 1.2em;
+    color: white;
+    border-radius: 5px;
+    border: none;
+
 }
 
 footer{
     font-size: 0.8em;
     grid-area:footer;
     padding: 20px;
-    background: #a2ff6c;
+    background: #87c9ff;
     border: 3px black solid;
     border-bottom-left-radius: 30px;
     border-bottom-right-radius: 30px;

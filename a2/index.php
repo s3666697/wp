@@ -16,7 +16,7 @@
   <body>
     <div class='grid-container'>
         <header>
-            <!--Image referenced from: https://www.designevo.com/apps/logo/?name=black-and-white-projector-->
+            <!--Image sourced from: https://www.designevo.com/apps/logo/?name=black-and-white-projector-->
             <img class='logo' src='../../media/lunardo-cinema-logo.png' width='200'  alt='Lunardo Cinema Logo'/>
             <div class='Title'>Lunardo Cinema</div>
         </header>
@@ -40,50 +40,52 @@
                 <div class='SectionHeading'>Seating and Pricing</div>
                 <div class='SectionContent'>
                     <p>All of the seating at Lunardo Cinema has been upgraded as part of our recent renovations to ensure you have the most comfortable movie going experience than ever before! Why not treat yourself to our brand new First Class seating option, where you can experience movie blockbusters in the comfort of a full reclining seat.</p>
+                    <!--Image sourced from: http://www.profurn.com.au/portfolio-item/538/-->
                     <img src='../../media/standard_seat.png' width='500' alt='Standard cinema Seat'/>
+                    <!--Image sourced from: http://www.profurn.com.au/portfolio-item/verona-single-zero-wall/-->
                     <img src='../../media/first_class_seat.png' width='500' alt='First class cinema Seat'/>
                     <table class='SeatOptions'>
                         <tr>
-                            <th>Seat Type</th>
-                            <th>Seat Code</th>
-                            <th>All day Monday and Wednesday AND 12pm on Weekdays</th>
-                            <th>All other times</th>
+                            <th class= 'SeatType'>Seat Type</th>
+                            <th class= 'SeatCode'>Seat Code</th>
+                            <th class= 'DiscountPricing'>All day Monday and Wednesday AND 12pm on Weekdays</th>
+                            <th class= 'StandardPricing'>All other times</th>
                         </tr>
                         <tr>
-                            <td>Standard Adult</td>
-                            <td>STA</td>
-                            <td>14.00</td>
-                            <td>19.80</td>
+                            <td class= 'SeatType'>Standard Adult</td>
+                            <td class= 'SeatCode'>STA</td>
+                            <td class= 'DiscountPricing'>14.00</td>
+                            <td class= 'StandardPricing'>19.80</td>
                         </tr>
                         <tr>
-                            <td>Standard Concession</td>
-                            <td>STP</td>
-                            <td>12.50</td>
-                            <td>17.50</td>
+                            <td class= 'SeatType'>Standard Concession</td>
+                            <td class= 'SeatCode'>STP</td>
+                            <td class= 'DiscountPricing'>12.50</td>
+                            <td class= 'StandardPricing'>17.50</td>
                         </tr>
                         <tr>
-                            <td>Standard Child</td>
-                            <td>STC</td>
-                            <td>11.00</td>
-                            <td>15.30</td>
+                            <td class= 'SeatType'>Standard Child</td>
+                            <td class= 'SeatCode'>STC</td>
+                            <td class= 'DiscountPricing'>11.00</td>
+                            <td class= 'StandardPricing'>15.30</td>
                         </tr>
                         <tr>
-                            <td>First Class Adult</td>
-                            <td>FCA</td>
-                            <td>24.00</td>
-                            <td>30.00</td>
+                            <td class= 'SeatType'>First Class Adult</td>
+                            <td class= 'SeatCode'>FCA</td>
+                            <td class= 'DiscountPricing'>24.00</td>
+                            <td class= 'StandardPricing'>30.00</td>
                         </tr>
                         <tr>
-                            <td>First Class Concession</td>
-                            <td>FCP</td>
-                            <td>22.50</td>
-                            <td>27.00</td>
+                            <td class= 'SeatType'>First Class Concession</td>
+                            <td class= 'SeatCode'>FCP</td>
+                            <td class= 'DiscountPricing'>22.50</td>
+                            <td class= 'StandardPricing'>27.00</td>
                         </tr>
                         <tr>
-                            <td>First Class Child</td>
-                            <td>FCC</td>
-                            <td>21.00</td>
-                            <td>24.00</td>
+                            <td class= 'SeatType'>First Class Child</td>
+                            <td class= 'SeatCode'>FCC</td>
+                            <td class= 'DiscountPricing'>21.00</td>
+                            <td class= 'StandardPricing'>24.00</td>
                         </tr>
                     </table>
                 </div>
@@ -93,77 +95,96 @@
                 <div class='SectionHeading'>Now Showing</div>
                 <div class='SecitonContent'>
                     <div class='Movie'>
+                        <!--Image sourced from: https://www.cinematerial.com/movies/a-star-is-born-i1517451/p/zhwahyuv-->
                         <img class='MoviePoster' src='../../media/posters/a_star_is_born.png' width='500' alt 'A Star Is Born movie poster' />
                         <div class='MovieTitle'>A Star Is Born</div>
                         <div class='MovieRating'>M</div>
-                        <div class='MovieSessions'>
-                            <ul>
-                                <li>Mon - 6PM</li>
-                                <li>Tue - 6PM</li>
-                                <li>Sat - 3PM</li>
-                                <li>Sun - 3PM</li>
-                            </ul>
+                        <div class='MovieSessionsTitle'>Sessions Available:
+                            <div class='MovieSessions'>
+                                <ul>
+                                    <li>Mon - 6PM</li>
+                                    <li>Tue - 6PM</li>
+                                    <li>Sat - 3PM</li>
+                                    <li>Sun - 3PM</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                     <div class='Movie'>
+                        <!--Image sourced from: https://www.cinematerial.com/movies/boy-erased-i7008872/p/5f6nyxbj-->
                         <img class='MoviePoster' src='../../media/posters/boy_erased.png' width='500' alt 'Boy Erased movie poster' />
                         <div class='MovieTitle'>Boy Erased movie poster</div>
                         <div class='MovieRating'>MA15+</div>
-                        <div class='MovieSessions'>
-                             <ul>
-                                <li>Wed - 12PM</li>
-                                <li>Thu - 12PM</li>
-                                <li>Fri - 12PM</li>
-                                <li>Sat - 9PM</li>
-                                <li>Sun - 9PM</li>
-                            </ul>
+                        <div class='MovieSessionsTitle'>Sessions Available:
+                            <div class='MovieSessions'>
+                                 <ul>
+                                    <li>Wed - 12PM</li>
+                                    <li>Thu - 12PM</li>
+                                    <li>Fri - 12PM</li>
+                                    <li>Sat - 9PM</li>
+                                    <li>Sun - 9PM</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                     <div class='Movie'>
+                        <!--Image sourced from: https://www.cinematerial.com/movies/the-girl-in-the-spiders-web-i5177088/p/hdqkcier-->
                         <img class='MoviePoster' src='../../media/posters/girl_in_the_spiders_web.png' width='500' alt 'Girl In The Spiders Web movie poster' />
                         <div class='MovieTitle'>Girl In The Spiders Web</div>
                         <div class='MovieRating'>MA15+</div>
-                        <div class='MovieSessions'>
-                            <ul>
-                                <li>Wed - 9PM</li>
-                                <li>Thu - 9PM</li>
-                                <li>Fri - 9PM</li>
-                                <li>Sat - 6PM</li>
-                                <li>Sun - 6PM</li>
-                            </ul>
+                        <div class='MovieSessionsTitle'>Sessions Available:
+                            <div class='MovieSessions'>
+                                <ul>
+                                    <li>Wed - 9PM</li>
+                                    <li>Thu - 9PM</li>
+                                    <li>Fri - 9PM</li>
+                                    <li>Sat - 6PM</li>
+                                    <li>Sun - 6PM</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                     <div class='Movie'>
-                        <img class='MoviePoster' src='../../media/posters/ralph_breaks_the_internet.png' width='500' alt 'Ralph Breaks The Internet movie poster' />
+                        <!--Image sourced from: https://www.cinematerial.com/movies/ralph-breaks-the-internet-i5848272/p/iitivkt5-->
+                        <img class='MoviePoster' src='../../media/posters/ralph_breaks_the_internet2.png' width='500' alt 'Ralph Breaks The Internet movie poster' />
                         <div class='MovieTitle'>Ralph Breaks The Internet</div>
                         <div class='MovieRating'>PG</div>
-                        <div class='MovieSessions'>
-                             <ul>
-                                <li>Mon - 12PM</li>
-                                <li>Tue - 12PM</li>
-                                <li>Wed - 6PM</li>
-                                <li>Thu - 6PM</li>
-                                <li>Fri - 6PM</li>
-                                <li>Sat - 12PM</li>
-                                <li>Sun - 12PM</li>
-                            </ul>
+                        <div class='MovieSessionsTitle'>Sessions Available:
+                            <div class='MovieSessions'>
+                                 <ul>
+                                    <li>Mon - 12PM</li>
+                                    <li>Tue - 12PM</li>
+                                    <li>Wed - 6PM</li>
+                                    <li>Thu - 6PM</li>
+                                    <li>Fri - 6PM</li>
+                                    <li>Sat - 12PM</li>
+                                    <li>Sun - 12PM</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </section>
 
-            <section class='Synopsis'>
-                <div class='MovieTitle'>Girl In The Spiders Web</div>
-                <div class='MovieRating'>MA15+</div>
-                <div class='MovieSynopsis'>Lisbeth Salander, the cult figure and title character of the acclaimed Millennium book series created by Stieg Larsson, will return to the screen in The Girl in the Spider’s Web, a first-time adaptation of the recent global bestseller.  Golden Globe winner Claire Foy, the star of “The Crown,” will play the outcast vigilante defender under the direction of Fede Alvarez, the director of 2016’s breakout thriller Don’t Breathe; the screenplay adaptation is by Steven Knight and Fede Alvarez & Jay Basu.</div>
-                <iframe class='MovieTrailer' width="560" height="315" src="https://www.youtube.com/embed/XKMSP9OKspQ?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                <div class='Book'>Make a Booking:</div>
+                <section class='Synopsis'>
+                    <div class='MovieTitle'>Girl In The Spiders Web</div>
+                    <div class='MovieRating'>MA15+</div>
+                    <div class='MovieSynopsis'>Lisbeth Salander, the cult figure and title character of the acclaimed Millennium book series created by Stieg Larsson, will return to the screen in The Girl in the Spider’s Web, a first-time adaptation of the recent global bestseller.  Golden Globe winner Claire Foy, the star of “The Crown,” will play the outcast vigilante defender under the direction of Fede Alvarez, the director of 2016’s breakout thriller Don’t Breathe; the screenplay adaptation is by Steven Knight and Fede Alvarez &amp; Jay Basu.</div>
+                    <iframe class='MovieTrailer' width="560" height="315" src="https://www.youtube.com/embed/XKMSP9OKspQ?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+                    <div class='MakeABooking'>Make a Booking:</div>
+                    <button class='SessionTimesButton' type="button">Wed - 9PM</button>
+                    <button class='SessionTimesButton' type="button">Thu - 9PM</button>
+                    <button class='SessionTimesButton' type="button">Fri - 9PM</button>
+                    <button class='SessionTimesButton' type="button">Sat - 6PM</button>
+                    <button class='SessionTimesButton' type="button">Sun - 6PM</button>
+                </section>
+
+                </div>
             </section>
 
             <section id='Booking'>
                 <div class='SectionHeading'>Booking</div>
                 <div class='SecitonContent'>
-                    <form action='https://titan.csit.rmit.edu.au/~e54061/wp/lunardo-formtest.php' method='post' target="_blank">
+                    <form class='MakeBookingForm'action='https://titan.csit.rmit.edu.au/~e54061/wp/lunardo-formtest.php' method='post' target="_blank">
                         <input type='hidden' name='movie[id]' value='ACT'/>
                         <input type='hidden' name='movie[day]' value='MON'/>
                         <input type='hidden' name='movie[hour]' value='09:00'/>
