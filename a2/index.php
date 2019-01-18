@@ -17,7 +17,7 @@
     <div class='grid-container'>
         <header>
             <!--Image sourced from: https://www.designevo.com/apps/logo/?name=black-and-white-projector-->
-            <img class='logo' src='../../media/lunardo-cinema-logo.png' width='200'  alt='Lunardo Cinema Logo'/>
+            <!--<img class='logo' src='../../media/lunardo-cinema-logo.png' width='200'  alt='Lunardo Cinema Logo'/>-->
             <div class='Title'>Lunardo Cinema</div>
         </header>
 
@@ -33,6 +33,12 @@
                 <div class='SectionHeading'>About Us</div>
                 <div class='SectionContent'>
                     <p>Come celebrate the Lunardo Cinema grand reopening on Thursday, February 14th! We've made extensive improvements and renovations so you can now relax in our brand new standard seats or why not treat yourself in our premium First Class cinema, featuring reclining seats! You'll be so comfortable you could fall asleep if it wasn't for our upgraded 3D Dolby Vision projectors and Dolby Atmos surround sound, which provides an unparrelled sound and visually spectacular.</p>
+                    <!--Image sourced from: http://thepoppingpost.com/what-mr-popcorn-is-saying-when-you-dont-behave-at-the-cinema/-->
+                    <img class='CinemaImages' src='../../media/cinema/eating-popcorn.png' width='400' alt='Lady eating popcorn while watching a movie in a cinema.'/>
+                    <!--Image sourced from: https://www.filmink.com.au/new-years-cinematic-resolutions/-->
+                    <img class='CinemaImages' src='../../media/cinema/cinema-candybar.png' width='400' alt='Cinema candybar.'/>
+                    <!--Image sourced from: https://www.google.com/maps-->
+                    <img class='CinemaMap' src='../../media/cinema/lundaro-map.png' width='800' alt='Cinema location on a map.'/>
                 </div>
             </section>
 
@@ -41,51 +47,51 @@
                 <div class='SectionContent'>
                     <p>All of the seating at Lunardo Cinema has been upgraded as part of our recent renovations to ensure you have the most comfortable movie going experience than ever before! Why not treat yourself to our brand new First Class seating option, where you can experience movie blockbusters in the comfort of a full reclining seat.</p>
                     <!--Image sourced from: http://www.profurn.com.au/portfolio-item/538/-->
-                    <img src='../../media/standard_seat.png' width='500' alt='Standard cinema Seat'/>
+                    <img src='../../media/standard_seat.png' width='500' alt='Standard cinema seat.'/>
                     <!--Image sourced from: http://www.profurn.com.au/portfolio-item/verona-single-zero-wall/-->
-                    <img src='../../media/first_class_seat.png' width='500' alt='First class cinema Seat'/>
+                    <img src='../../media/first_class_seat.png' width='500' alt='First class cinema seat.'/>
                     <table class='SeatOptions'>
                         <tr>
-                            <th class= 'SeatType'>Seat Type</th>
-                            <th class= 'SeatCode'>Seat Code</th>
-                            <th class= 'DiscountPricing'>All day Monday and Wednesday AND 12pm on Weekdays</th>
-                            <th class= 'StandardPricing'>All other times</th>
+                            <th class='SeatType'>Seat Type</th>
+                            <th class='SeatCode'>Seat Code</th>
+                            <th class='DiscountPricing'>All day Monday and Wednesday AND 12pm on Weekdays</th>
+                            <th class='StandardPricing'>All other times</th>
                         </tr>
                         <tr>
-                            <td class= 'SeatType'>Standard Adult</td>
-                            <td class= 'SeatCode'>STA</td>
-                            <td class= 'DiscountPricing'>14.00</td>
-                            <td class= 'StandardPricing'>19.80</td>
+                            <td class='SeatType'>Standard Adult</td>
+                            <td class='SeatCode'>STA</td>
+                            <td class='DiscountPricing'>14.00</td>
+                            <td class='StandardPricing'>19.80</td>
                         </tr>
                         <tr>
-                            <td class= 'SeatType'>Standard Concession</td>
-                            <td class= 'SeatCode'>STP</td>
-                            <td class= 'DiscountPricing'>12.50</td>
-                            <td class= 'StandardPricing'>17.50</td>
+                            <td class='SeatType'>Standard Concession</td>
+                            <td class='SeatCode'>STP</td>
+                            <td class='DiscountPricing'>12.50</td>
+                            <td class='StandardPricing'>17.50</td>
                         </tr>
                         <tr>
-                            <td class= 'SeatType'>Standard Child</td>
-                            <td class= 'SeatCode'>STC</td>
-                            <td class= 'DiscountPricing'>11.00</td>
-                            <td class= 'StandardPricing'>15.30</td>
+                            <td class='SeatType'>Standard Child</td>
+                            <td class='SeatCode'>STC</td>
+                            <td class='DiscountPricing'>11.00</td>
+                            <td class='StandardPricing'>15.30</td>
                         </tr>
                         <tr>
-                            <td class= 'SeatType'>First Class Adult</td>
-                            <td class= 'SeatCode'>FCA</td>
-                            <td class= 'DiscountPricing'>24.00</td>
-                            <td class= 'StandardPricing'>30.00</td>
+                            <td class='SeatType'>First Class Adult</td>
+                            <td class='SeatCode'>FCA</td>
+                            <td class='DiscountPricing'>24.00</td>
+                            <td class='StandardPricing'>30.00</td>
                         </tr>
                         <tr>
-                            <td class= 'SeatType'>First Class Concession</td>
-                            <td class= 'SeatCode'>FCP</td>
-                            <td class= 'DiscountPricing'>22.50</td>
-                            <td class= 'StandardPricing'>27.00</td>
+                            <td class='SeatType'>First Class Concession</td>
+                            <td class='SeatCode'>FCP</td>
+                            <td class='DiscountPricing'>22.50</td>
+                            <td class='StandardPricing'>27.00</td>
                         </tr>
                         <tr>
-                            <td class= 'SeatType'>First Class Child</td>
-                            <td class= 'SeatCode'>FCC</td>
-                            <td class= 'DiscountPricing'>21.00</td>
-                            <td class= 'StandardPricing'>24.00</td>
+                            <td class='SeatType'>First Class Child</td>
+                            <td class='SeatCode'>FCC</td>
+                            <td class='DiscountPricing'>21.00</td>
+                            <td class='StandardPricing'>24.00</td>
                         </tr>
                     </table>
                 </div>
@@ -189,39 +195,46 @@
                         <input type='hidden' name='movie[day]' value='MON'/>
                         <input type='hidden' name='movie[hour]' value='09:00'/>
                         <input type='hidden' name='movie[id]' value='1'/>
-                        Ticket Type:<select name='seat_list'>
-                        <option value=''>Please Select</option>
-                            <optgroup label='Standard'>
-                                <option value='seats[STA]'>Standard Adult</option>
-                                <option value='seats[STA]'>Standard Concession</option>
-                                <option value='seats[STC]'>Standard Child</option>
-                            </optgroup>
-                            <optgroup label='First Class'>
-                                <option value='seats[FCA]'>First Class Adult</option>
-                                <option value='seats[FCP]'>First Class Adult</option>
-                                <option value='seats[FCC]'>First Class Child</option>
-                            </optgroup>
+                        <div class='FormHeading'>Ticket Type:</div>
+                        <select>
+                            <option value='' selected>Please Select</option>
+                                <optgroup label='Standard'>
+                                    <option name='seats[STA]' value='1'>Standard Adult</option>
+                                    <option name='seats[STP]' value='2'>Standard Concession</option>
+                                    <option name='seats[STC]' value='3'>Standard Child</option>
+                                </optgroup>
+                                <optgroup label='First Class'>
+                                    <option name='seats[FCA]' value='4'>First Class Adult</option>
+                                    <option name='seats[FCP]' value='5'>First Class Concession</option>
+                                    <option name='seats[FCC]' value='6'>First Class Child</option>
+                                </optgroup>
                         </select>
                         <br>
-                        Name: <input type='text' name='cust[name]' value=''/><br>
-                        Email: <input type='email' name='cust[email]' value=''/><br>
-                        Mobile: <input type='tel' name='cust[mobile]' value=''/><br>
-                        Credit Card: <input type='text' name='cust[card]' value=''/><br>
-                        Expiry: <input type='month' name='cust[expiry]' value=''/><br>
-                        Order: <input type='submit' name='order' value='Order'/><br>
+                        <div class='FormHeading'>Name: </div>
+                        <input type='text' name='cust[name]' value=''/><br>
+                        <div class='FormHeading'>Email: </div>
+                        <input type='email' name='cust[email]' value=''/><br>
+                        <div class='FormHeading'>Mobile: </div>
+                        <input type='tel' name='cust[mobile]' value=''/><br>
+                        <div class='FormHeading'>Credit Card: </div>
+                        <input type='text' name='cust[card]' value=''/><br>
+                        <div class='FormHeading'>Expiry: </div>
+                        <input type='month' name='cust[expiry]' value=''/><br>
+                        <input type='submit' name='order' value='Order'/><br>
                     </form>
                 </div>
             </section>
         </main>
 
         <footer>
-            <div id=BusinessInfo>info@lunardocinema.com.au<br>
+            <div id=BusinessInfo>
+                <a href="mailto:info@lunardocinema.com.au?Subject=Website%20Enquiry" target="_top">info@lunardocinema.com.au</a><br>
                 1300 222 444<br>
                 123 Main Street, Brisbane, Qld, 4000.<br>
             </div>
             <div class='StudentInfo'>
                 &copy;<script>document.write(new Date().getFullYear());</script>
-                Christopher Bowe, S3666697, https://github.com/s3666697/wp. Last modified <?= date ("Y F d  H:i", filemtime($_SERVER['SCRIPT_FILENAME'])); ?>.
+                Christopher Bowe, S3666697, <a href="https://github.com/s3666697/wp" target="_blank">https://github.com/s3666697/wp</a>. Last modified <?= date ("Y F d  H:i", filemtime($_SERVER['SCRIPT_FILENAME'])); ?>.
             </div>
             <div id='Disclaimer'>
                 Disclaimer: This website is not a real website and is being developed as part of a School of Science Web Programming course at RMIT University in Melbourne, Australia.
