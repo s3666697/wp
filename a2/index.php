@@ -17,7 +17,7 @@
     <div class='grid-container'>
         <header>
             <!--Image sourced from: https://www.designevo.com/apps/logo/?name=black-and-white-projector-->
-            <!--<img class='logo' src='../../media/lunardo-cinema-logo.png' width='200'  alt='Lunardo Cinema Logo'/>-->
+            <img class='logo' src='../../media/lunardo-cinema-logo.png' width='200'  alt='Lunardo Cinema Logo'/>
             <div class='Title'>Lunardo Cinema</div>
         </header>
 
@@ -38,7 +38,7 @@
                     <!--Image sourced from: https://www.filmink.com.au/new-years-cinematic-resolutions/-->
                     <img class='CinemaImages' src='../../media/cinema/cinema-candybar.png' width='400' alt='Cinema candybar.'/>
                     <!--Image sourced from: https://www.google.com/maps-->
-                    <img class='CinemaMap' src='../../media/cinema/lundaro-map.png' width='800' alt='Cinema location on a map.'/>
+                    <img class='CinemaMap' src='../../media/cinema/lunardo-map.png' width='800' alt='Cinema location on a map.'/>
                 </div>
             </section>
 
@@ -102,7 +102,7 @@
                 <div class='SecitonContent'>
                     <div class='Movie'>
                         <!--Image sourced from: https://www.cinematerial.com/movies/a-star-is-born-i1517451/p/zhwahyuv-->
-                        <img class='MoviePoster' src='../../media/posters/a_star_is_born.png' width='500' alt 'A Star Is Born movie poster' />
+                        <img class='MoviePoster' src='../../media/posters/a_star_is_born.png' alt 'A Star Is Born movie poster' />
                         <div class='MovieTitle'>A Star Is Born</div>
                         <div class='MovieRating'>M</div>
                         <div class='MovieSessionsTitle'>Sessions Available:
@@ -118,7 +118,7 @@
                     </div>
                     <div class='Movie'>
                         <!--Image sourced from: https://www.cinematerial.com/movies/boy-erased-i7008872/p/5f6nyxbj-->
-                        <img class='MoviePoster' src='../../media/posters/boy_erased.png' width='500' alt 'Boy Erased movie poster' />
+                        <img class='MoviePoster' src='../../media/posters/boy_erased.png' alt 'Boy Erased movie poster' />
                         <div class='MovieTitle'>Boy Erased movie poster</div>
                         <div class='MovieRating'>MA15+</div>
                         <div class='MovieSessionsTitle'>Sessions Available:
@@ -135,7 +135,7 @@
                     </div>
                     <div class='Movie'>
                         <!--Image sourced from: https://www.cinematerial.com/movies/the-girl-in-the-spiders-web-i5177088/p/hdqkcier-->
-                        <img class='MoviePoster' src='../../media/posters/girl_in_the_spiders_web.png' width='500' alt 'Girl In The Spiders Web movie poster' />
+                        <img class='MoviePoster' src='../../media/posters/girl_in_the_spiders_web.png' alt 'Girl In The Spiders Web movie poster' />
                         <div class='MovieTitle'>Girl In The Spiders Web</div>
                         <div class='MovieRating'>MA15+</div>
                         <div class='MovieSessionsTitle'>Sessions Available:
@@ -152,7 +152,7 @@
                     </div>
                     <div class='Movie'>
                         <!--Image sourced from: https://www.cinematerial.com/movies/ralph-breaks-the-internet-i5848272/p/iitivkt5-->
-                        <img class='MoviePoster' src='../../media/posters/ralph_breaks_the_internet2.png' width='500' alt 'Ralph Breaks The Internet movie poster' />
+                        <img class='MoviePoster' src='../../media/posters/ralph_breaks_the_internet.png' alt 'Ralph Breaks The Internet movie poster' />
                         <div class='MovieTitle'>Ralph Breaks The Internet</div>
                         <div class='MovieRating'>PG</div>
                         <div class='MovieSessionsTitle'>Sessions Available:
@@ -189,7 +189,8 @@
 
             <section id='Booking'>
                 <div class='SectionHeading'>Booking</div>
-                <div class='SecitonContent'>
+                <div class='SectionContent'>
+                    <p>Please complete the following information to complete your booking at Lunardo Cinema.</p>
                     <form class='MakeBookingForm'action='https://titan.csit.rmit.edu.au/~e54061/wp/lunardo-formtest.php' method='post' target="_blank">
                         <input type='hidden' name='movie[id]' value='ACT'/>
                         <input type='hidden' name='movie[day]' value='MON'/>
