@@ -223,6 +223,8 @@ tr:nth-child(even) {
 
 .MovieTrailer{
     display:block;
+    width: 560px;
+    height: 315px;
     margin: 20px auto;
 }
 
