@@ -190,7 +190,7 @@ tr:nth-child(even) {
 }
 
 .Movie{
-    width: 300px;
+    width: 310px;
     height: 700px;
     background: white;
     border: 2px black solid;
@@ -202,7 +202,7 @@ tr:nth-child(even) {
 }
 
 .MoviePoster{
-    max-width: 300px;
+    max-width: 310px;
 }
 
 .MovieTitle{

@@ -203,9 +203,14 @@ require_once("tools.php");
                         </div>
                     </div>
 
+                    <?php
+                    printMoviesShowing();
+                    ?>
+
                 <section class='Synopsis'>
                     <div class='MovieTitle'>Girl In The Spiders Web</div>
                     <div class='MovieRating'>MA15+</div>
+                    <!--Synopsis sourced from: https://www.youtube.com/watch?v=XKMSP9OKspQ-->
                     <div class='MovieSynopsis'>Lisbeth Salander, the cult figure and title character of the acclaimed Millennium book series created by Stieg Larsson, will return to the screen in The Girl in the Spider’s Web, a first-time adaptation of the recent global bestseller.  Golden Globe winner Claire Foy, the star of “The Crown,” will play the outcast vigilante defender under the direction of Fede Alvarez, the director of 2016’s breakout thriller Don’t Breathe; the screenplay adaptation is by Steven Knight and Fede Alvarez &amp; Jay Basu.</div>
                     <iframe class='MovieTrailer' width="560" height="315" src="https://www.youtube.com/embed/XKMSP9OKspQ?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
@@ -216,6 +221,10 @@ require_once("tools.php");
                     <button class='SessionTimesButton' type="button">Sat - 6PM</button>
                     <button class='SessionTimesButton' type="button">Sun - 6PM</button>
                 </section>
+
+                <?php
+                    printMovieInformation();
+                ?>
 
                 </div>
             </section>
@@ -279,6 +288,10 @@ require_once("tools.php");
   </body>
 
 <div id=debug>
+    <?php
+    printMovieArray();
+    ?>
+    <br>
     <span>Debug Info:
     </span>
     <?php
