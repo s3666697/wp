@@ -2,6 +2,9 @@ html {
   scroll-behavior: smooth;
 }
 
+a {
+    color: black;
+}
 .grid-container{
     display: grid;
     grid-template-areas:
@@ -128,10 +131,10 @@ main{
 
 .SectionContent{
     background: white;
-    padding: 30px 10%;
+    padding: 50px 0px;
     text-align: center;
     align-items: center;
-    font-size: 1.5em;
+    font-size: 1em;
 }
 
 #AboutUs{
@@ -229,6 +232,8 @@ tr:nth-child(even) {
     background: white;
     margin: 30px 10%;
     border: 1px black solid;
+    display: none;
+
 }
 
 .MovieSynopsis{
@@ -343,4 +348,9 @@ footer{
     padding: 20px;
     background-color: lightgray;
     border: 1px black solid;
+}
+
+.form {
+    width: 40%;
+    display: inline-block;
 }

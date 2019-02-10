@@ -1,6 +1,11 @@
 <?php
-require_once("tools.php");
+    require_once("tools.php");
 ?>
+
+<?php
+    php2js(priceArray(), 'priceArrayJS');
+?>
+
 <!DOCTYPE html>
 <html lang='en'>
   <head>
@@ -17,12 +22,12 @@ require_once("tools.php");
       
     <script>
         window.onscroll = function () {
-            console.clear();
+//            console.clear();
             let navlinks = document.getElementsByTagName("nav")[0].children;
             let sections = document.getElementsByTagName("main")[0].children;
             last = sections[sections.length - 1].getBoundingClientRect().top;
             if (last <=0) {
-                console.log('last');
+//                console.log('last');
                 navlinks[navlinks.length - 1].classList.add("active");
                 for (j = 0; j < navlinks.length - 1; j++)
                     navlinks[j].classList.remove("active");
@@ -39,10 +44,69 @@ require_once("tools.php");
                         log += ' xxx ';
                         navlinks[i - 1].classList.remove("active");
                     }
-                    console.log(log);
+//                    console.log(log);
                 }
             }
         }
+
+        function hideAllSynopsis(){
+            var allMovieSynopsis = document.getElementsByClassName('Synopsis');
+                for (var movie=0; movie < allMovieSynopsis.length ;movie++) {
+                    allMovieSynopsis[movie].style.display = "none";
+                }
+        }
+
+        function displaySynopsis(movieID) {
+            var movieSynopsis = document.getElementById(movieID);
+            if (movieSynopsis.style.display === "none") {
+                hideAllSynopsis();
+                movieSynopsis.style.display = "block";
+            } else {
+                hideAllSynopsis();
+            }
+        }
+
+        function setHiddenFields(movieID, day, hour){
+            document.getElementById('movie[id]').value = movieID;
+            document.getElementById('movie[day]').value = day;
+            document.getElementById('movie[hour]').value = hour;
+        }
+
+        function calculatePrice(){
+
+            var totalPrice = 0.00;
+            var discount = null;
+            var day = document.getElementById('movie[day]').value;
+            var hour = document.getElementById('movie[hour]').value;
+            var seatType = document.getElementById('movie[id]').value;
+
+            if(day == 'SAT' || day == 'SUN'){
+                discount = 'FullPrice';
+            }
+            else if(day != 'SAT' && hour == '12:00' || day != 'SUN' && hour == '12:00' ){
+                discount = 'DiscountPrice';
+            }
+            else if(day == 'MON' || day == 'WED'){
+                discount = 'DiscountPrice';
+            }
+            else {
+                discount = 'FullPrice';
+            }
+
+            totalPrice = totalPrice + priceArrayJS["STA"][discount] * document.getElementById('seats[STA]').value;
+            totalPrice = totalPrice + priceArrayJS["STP"][discount] * document.getElementById('seats[STP]').value;
+            totalPrice = totalPrice + priceArrayJS["STC"][discount] * document.getElementById('seats[STC]').value;
+            totalPrice = totalPrice + priceArrayJS["FCA"][discount] * document.getElementById('seats[FCA]').value;
+            totalPrice = totalPrice + priceArrayJS["FCP"][discount] * document.getElementById('seats[FCP]').value;
+            totalPrice = totalPrice + priceArrayJS["FCC"][discount] * document.getElementById('seats[FCC]').value;
+
+            console.log(seatType);
+            console.log(day);
+            console.log(hour);
+            console.log(totalPrice);
+            console.log(discount);
+        }
+
     </script>
   </head>
 
@@ -132,100 +196,14 @@ require_once("tools.php");
 
             <section id='NowShowing'>
                 <div class='SectionHeading'>Now Showing</div>
-                <div class='SecitonContent'>
-                    <div class='Movie'>
-                        <!--Image sourced from: https://www.cinematerial.com/movies/a-star-is-born-i1517451/p/zhwahyuv-->
-                        <img class='MoviePoster' src='../../media/posters/a_star_is_born.png' alt 'A Star Is Born movie poster' />
-                        <div class='MovieTitle'>A Star Is Born</div>
-                        <div class='MovieRating'>M</div>
-                        <div class='MovieSessionsTitle'>Sessions Available:
-                            <div class='MovieSessions'>
-                                <ul>
-                                    <li>Mon - 6PM</li>
-                                    <li>Tue - 6PM</li>
-                                    <li>Sat - 3PM</li>
-                                    <li>Sun - 3PM</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class='Movie'>
-                        <!--Image sourced from: https://www.cinematerial.com/movies/boy-erased-i7008872/p/5f6nyxbj-->
-                        <img class='MoviePoster' src='../../media/posters/boy_erased.png' alt 'Boy Erased movie poster' />
-                        <div class='MovieTitle'>Boy Erased movie poster</div>
-                        <div class='MovieRating'>MA15+</div>
-                        <div class='MovieSessionsTitle'>Sessions Available:
-                            <div class='MovieSessions'>
-                                 <ul>
-                                    <li>Wed - 12PM</li>
-                                    <li>Thu - 12PM</li>
-                                    <li>Fri - 12PM</li>
-                                    <li>Sat - 9PM</li>
-                                    <li>Sun - 9PM</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class='Movie'>
-                        <!--Image sourced from: https://www.cinematerial.com/movies/the-girl-in-the-spiders-web-i5177088/p/hdqkcier-->
-                        <img class='MoviePoster' src='../../media/posters/girl_in_the_spiders_web.png' alt 'Girl In The Spiders Web movie poster' />
-                        <div class='MovieTitle'>Girl In The Spiders Web</div>
-                        <div class='MovieRating'>MA15+</div>
-                        <div class='MovieSessionsTitle'>Sessions Available:
-                            <div class='MovieSessions'>
-                                <ul>
-                                    <li>Wed - 9PM</li>
-                                    <li>Thu - 9PM</li>
-                                    <li>Fri - 9PM</li>
-                                    <li>Sat - 6PM</li>
-                                    <li>Sun - 6PM</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class='Movie'>
-                        <!--Image sourced from: https://www.cinematerial.com/movies/ralph-breaks-the-internet-i5848272/p/iitivkt5-->
-                        <img class='MoviePoster' src='../../media/posters/ralph_breaks_the_internet.png' alt 'Ralph Breaks The Internet movie poster' />
-                        <div class='MovieTitle'>Ralph Breaks The Internet</div>
-                        <div class='MovieRating'>PG</div>
-                        <div class='MovieSessionsTitle'>Sessions Available:
-                            <div class='MovieSessions'>
-                                 <ul>
-                                    <li>Mon - 12PM</li>
-                                    <li>Tue - 12PM</li>
-                                    <li>Wed - 6PM</li>
-                                    <li>Thu - 6PM</li>
-                                    <li>Fri - 6PM</li>
-                                    <li>Sat - 12PM</li>
-                                    <li>Sun - 12PM</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
+                <div class='SectionContent'>
                     <?php
-                    printMoviesShowing();
+                        printMoviesShowing();
                     ?>
 
-                <section class='Synopsis'>
-                    <div class='MovieTitle'>Girl In The Spiders Web</div>
-                    <div class='MovieRating'>MA15+</div>
-                    <!--Synopsis sourced from: https://www.youtube.com/watch?v=XKMSP9OKspQ-->
-                    <div class='MovieSynopsis'>Lisbeth Salander, the cult figure and title character of the acclaimed Millennium book series created by Stieg Larsson, will return to the screen in The Girl in the Spider’s Web, a first-time adaptation of the recent global bestseller.  Golden Globe winner Claire Foy, the star of “The Crown,” will play the outcast vigilante defender under the direction of Fede Alvarez, the director of 2016’s breakout thriller Don’t Breathe; the screenplay adaptation is by Steven Knight and Fede Alvarez &amp; Jay Basu.</div>
-                    <iframe class='MovieTrailer' width="560" height="315" src="https://www.youtube.com/embed/XKMSP9OKspQ?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-                    <div class='MakeABooking'>Make a Booking:</div>
-                    <button class='SessionTimesButton' type="button">Wed - 9PM</button>
-                    <button class='SessionTimesButton' type="button">Thu - 9PM</button>
-                    <button class='SessionTimesButton' type="button">Fri - 9PM</button>
-                    <button class='SessionTimesButton' type="button">Sat - 6PM</button>
-                    <button class='SessionTimesButton' type="button">Sun - 6PM</button>
-                </section>
-
-                <?php
-                    printMovieInformation();
-                ?>
-
+                    <?php
+                        printMovieSynopsis();
+                    ?>
                 </div>
             </section>
 
@@ -233,26 +211,103 @@ require_once("tools.php");
                 <div class='SectionHeading'>Booking</div>
                 <div class='SectionContent'>
                     <p>Please complete the following information to complete your booking at Lunardo Cinema.</p>
-                    <form class='MakeBookingForm'action='index.php' method='post' target="_blank">
-                        <input type='hidden' name='movie[id]' value='ACT'/>
-                        <input type='hidden' name='movie[day]' value='MON'/>
-                        <input type='hidden' name='movie[hour]' value='09:00'/>
-                        <input type='hidden' name='movie[id]' value='1'/>
-                        <div class='FormHeading'>Ticket Type:</div>
-                        <select>
+                    <form class='MakeBookingForm'action='index.php' method='post' target="_blank" onsubmit="calculatePrice()">
+                        <input type='hidden' name='movie[id]' id='movie[id]' value=''/>
+                        <input type='hidden' name='movie[day]' id='movie[day]' value=''/>
+                        <input type='hidden' name='movie[hour]' id='movie[hour]' value=''/>
+                        <div class=form>
+                        <div class='FormHeading'>Standard Adult:</div>
+                        <select name='seats[STA]' id='seats[STA]'>
                             <option value='' selected>Please Select</option>
-                                <optgroup label='Standard'>
-                                    <option name='seats[STA]' value='1'>Standard Adult</option>
-                                    <option name='seats[STP]' value='2'>Standard Concession</option>
-                                    <option name='seats[STC]' value='3'>Standard Child</option>
-                                </optgroup>
-                                <optgroup label='First Class'>
-                                    <option name='seats[FCA]' value='4'>First Class Adult</option>
-                                    <option name='seats[FCP]' value='5'>First Class Concession</option>
-                                    <option name='seats[FCC]' value='6'>First Class Child</option>
-                                </optgroup>
+                                <option value='1'>1</option>
+                                <option value='2'>2</option>
+                                <option value='3'>3</option>
+                                <option value='4'>4</option>
+                                <option value='5'>5</option>
+                                <option value='6'>6</option>
+                                <option value='7'>7</option>
+                                <option value='8'>8</option>
+                                <option value='9'>9</option>
+                                <option value='10'>10</option>
                         </select>
                         <br>
+                        <div class='FormHeading'>Standard Concession:</div>
+                        <select name='seats[STP]' id='seats[STP]' >
+                            <option value='' selected>Please Select</option>
+                                <option value='1'>1</option>
+                                <option value='2'>2</option>
+                                <option value='3'>3</option>
+                                <option value='4'>4</option>
+                                <option value='5'>5</option>
+                                <option value='6'>6</option>
+                                <option value='7'>7</option>
+                                <option value='8'>8</option>
+                                <option value='9'>9</option>
+                                <option value='10'>10</option>
+                        </select>
+                        <br>
+                        <div class='FormHeading'>Standard Child:</div>
+                        <select name='seats[STC]' id='seats[STC]'>
+                            <option value='' selected>Please Select</option>
+                                <option value='1'>1</option>
+                                <option value='2'>2</option>
+                                <option value='3'>3</option>
+                                <option value='4'>4</option>
+                                <option value='5'>5</option>
+                                <option value='6'>6</option>
+                                <option value='7'>7</option>
+                                <option value='8'>8</option>
+                                <option value='9'>9</option>
+                                <option value='10'>10</option>
+                        </select>
+                        <br>
+                        <div class='FormHeading'>First Class Adult:</div>
+                        <select name='seats[FCA]' id='seats[FCA]'>
+                            <option value='' selected>Please Select</option>
+                                <option value='1'>1</option>
+                                <option value='2'>2</option>
+                                <option value='3'>3</option>
+                                <option value='4'>4</option>
+                                <option value='5'>5</option>
+                                <option value='6'>6</option>
+                                <option value='7'>7</option>
+                                <option value='8'>8</option>
+                                <option value='9'>9</option>
+                                <option value='10'>10</option>
+                        </select>
+                        <br>
+                        <div class='FormHeading'>First Class Concession:</div>
+                        <select name='seats[FCP]' id='seats[FCP]'>
+                            <option value='' selected>Please Select</option>
+                                <option value='1'>1</option>
+                                <option value='2'>2</option>
+                                <option value='3'>3</option>
+                                <option value='4'>4</option>
+                                <option value='5'>5</option>
+                                <option value='6'>6</option>
+                                <option value='7'>7</option>
+                                <option value='8'>8</option>
+                                <option value='9'>9</option>
+                                <option value='10'>10</option>
+                        </select>
+                        <br>
+                        <div class='FormHeading'>First Class Child:</div>
+                        <select name='seats[FCC]' id='seats[FCC]'>
+                            <option value='' selected>Please Select</option>
+                                <option value='1'>1</option>
+                                <option value='2'>2</option>
+                                <option value='3'>3</option>
+                                <option value='4'>4</option>
+                                <option value='5'>5</option>
+                                <option value='6'>6</option>
+                                <option value='7'>7</option>
+                                <option value='8'>8</option>
+                                <option value='9'>9</option>
+                                <option value='10'>10</option>
+                        </select>
+                        <br>
+                        </div>
+                        <div class=form>
                         <div class='FormHeading'>Name: </div>
                         <input type='text' name='cust[name]' value=''/><br>
                         <div class='FormHeading'>Email: </div>
@@ -263,8 +318,11 @@ require_once("tools.php");
                         <input type='text' name='cust[card]' value=''/><br>
                         <div class='FormHeading'>Expiry: </div>
                         <input type='month' name='cust[expiry]' value=''/><br>
+                        <div class='FormHeading'>Total Price:</div><br>
                         <input type='submit' name='order' value='Order'/><br>
+                        </div>
                     </form>
+                    <button type="button" onclick="calculatePrice()">Click Me!</button>
                 </div>
             </section>
         </main>
@@ -289,9 +347,13 @@ require_once("tools.php");
 
 <div id=debug>
     <?php
-    printMovieArray();
+//       printMovieArray();
     ?>
-    <br>
+    <br><br>
+    <?php
+//        printPriceArray();
+    ?>
+
     <span>Debug Info:
     </span>
     <?php
