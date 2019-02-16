@@ -354,3 +354,7 @@ footer{
     width: 40%;
     display: inline-block;
 }
+
+.error {
+    color: red;
+}

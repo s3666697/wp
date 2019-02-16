@@ -1,16 +1,29 @@
 <?php
 
 session_start();
-$name='';
-$email='';
-$mobile='';
-$card='';
-$expiry='';
+$name=$_POST["cust"]["name"];
+$email=$_POST["cust"]["email"];
+$mobile=$_POST["cust"]["mobile"];
+$card=$_POST["cust"]["card"];
+$expiry=$_POST["cust"]["expiry"];
+$movieid=$_POST["movie"]["id"];
+$day=$_POST["movie"]["day"];
+$hour=$_POST["movie"]["hour"];
+$sta=$_POST["seats"]["STA"];
+$stp=$_POST["seats"]["STP"];
+$stc=$_POST["seats"]["STC"];
+$fca=$_POST["seats"]["FCA"];
+$fcp=$_POST["seats"]["FCP"];
+$fcc=$_POST["seats"]["FCC"];
+$totalprice='';
+
 $nameError='';
 $emailError='';
 $mobileError='';
 $cardError='';
 $expiryError='';
+
+
 
 // Prints data and shape/structure of data
 function preShow( $arr, $returnAsString=false ) {
@@ -53,7 +66,7 @@ function styleCurrentNavLink( $css ) {
 function movieArray(){
     $movieObject = [
         'ACT' => [
-            'title' => "The Girl in the Spider's Web",
+            'title' => "The Girl in the Spiders Web",
             'rating' => "MA15+",
             'description' => "Lisbeth Salander, the cult figure and title character of the acclaimed Millennium book series created by Stieg Larsson, will return to the screen in The Girl in the Spider’s Web, a first-time adaptation of the recent global bestseller. Golden Globe winner Claire Foy, the star of “The Crown,” will play the outcast vigilante defender under the direction of Fede Alvarez, the director of 2016’s breakout thriller Don’t Breathe; the screenplay adaptation is by Steven Knight and Fede Alvarez & Jay Basu.",
             'poster' => "girl_in_the_spiders_web.png",
@@ -150,14 +163,6 @@ function priceArray(){
     return $priceObject;
 };
 
-function printMovieArray(){
-   print_r(movieArray());
-};
-
-function printPriceArray(){
-   print_r(priceArray());
-};
-
 function printMoviesShowing(){
     foreach ( movieArray() as $movieId => $movie ) {
         echo
@@ -211,25 +216,25 @@ foreach ( movieArray() as $movieId => $movie ) {
         <div class='MakeABooking'>Make a Booking:</div>";
 
         if($movie['sessions']['monday'] !== NULL){
-            echo "<button class='SessionTimesButton' onclick=\"setHiddenFields('{$movieId}', 'MON', '{$movie['sessions']['monday']}')\" type='button'>MON - {$movie['sessions']['monday']}</button>";
+            echo "<button class='SessionTimesButton' onclick=\"setHiddenFields('{$movieId}','{$movie['title']}', 'MON', '{$movie['sessions']['monday']}')\" type='button'>MON - {$movie['sessions']['monday']}</button>";
         };
         if($movie['sessions']['tuesday'] !== NULL){
-                echo "<button class='SessionTimesButton' onclick=\"setHiddenFields('{$movieId}', 'TUE', '{$movie['sessions']['tuesday']}')\" type='button'>TUE - {$movie['sessions']['tuesday']}</button>";
+                echo "<button class='SessionTimesButton' onclick=\"setHiddenFields('{$movieId}','{$movie['title']}', 'TUE', '{$movie['sessions']['tuesday']}')\" type='button'>TUE - {$movie['sessions']['tuesday']}</button>";
         };
         if($movie['sessions']['wednesday'] !== NULL){
-                echo "<button class='SessionTimesButton' onclick=\"setHiddenFields('{$movieId}', 'WED', '{$movie['sessions']['wednesday']}')\" type='button'>WED - {$movie['sessions']['wednesday']}</button>";
+                echo "<button class='SessionTimesButton' onclick=\"setHiddenFields('{$movieId}','{$movie['title']}', 'WED', '{$movie['sessions']['wednesday']}')\" type='button'>WED - {$movie['sessions']['wednesday']}</button>";
         };
         if($movie['sessions']['thursday'] !== NULL){
-                echo "<button class='SessionTimesButton' onclick=\"setHiddenFields('{$movieId}', 'THU', '{$movie['sessions']['thursday']}')\" type='button'>THU - {$movie['sessions']['thursday']}</button>";
+                echo "<button class='SessionTimesButton' onclick=\"setHiddenFields('{$movieId}','{$movie['title']}', 'THU', '{$movie['sessions']['thursday']}')\" type='button'>THU - {$movie['sessions']['thursday']}</button>";
         };
         if($movie['sessions']['friday'] !== NULL){
-                echo "<button class='SessionTimesButton' onclick=\"setHiddenFields('{$movieId}', 'FRI', '{$movie['sessions']['friday']}')\" type='button'>FRI - {$movie['sessions']['friday']}</button>";
+                echo "<button class='SessionTimesButton' onclick=\"setHiddenFields('{$movieId}','{$movie['title']}', 'FRI', '{$movie['sessions']['friday']}')\" type='button'>FRI - {$movie['sessions']['friday']}</button>";
         };
         if($movie['sessions']['saturday'] !== NULL){
-                echo "<button class='SessionTimesButton' onclick=\"setHiddenFields('{$movieId}', 'SAT', '{$movie['sessions']['saturday']}')\" type='button'>SAT - {$movie['sessions']['saturday']}</button>";
+                echo "<button class='SessionTimesButton' onclick=\"setHiddenFields('{$movieId}','{$movie['title']}', 'SAT', '{$movie['sessions']['saturday']}')\" type='button'>SAT - {$movie['sessions']['saturday']}</button>";
         };
         if($movie['sessions']['sunday'] !== NULL){
-                echo "<button class='SessionTimesButton' onclick=\"setHiddenFields('{$movieId}', 'SUN', '{$movie['sessions']['sunday']}')\" type='button'>SUN - {$movie['sessions']['sunday']}</button>";
+                echo "<button class='SessionTimesButton' onclick=\"setHiddenFields('{$movieId}','{$movie['title']}', 'SUN', '{$movie['sessions']['sunday']}')\" type='button'>SUN - {$movie['sessions']['sunday']}</button>";
         };
     echo "</div>
     ";
@@ -237,52 +242,119 @@ foreach ( movieArray() as $movieId => $movie ) {
 };
 
 function validateForm(){
-    $errorCount=0;
-    global $nameError;
+
+    global $name;
     global $email;
     global $mobile;
     global $card;
     global $expiry;
+    global $nameError;
     global $emailError;
     global $mobileError;
     global $cardError;
     global $expiryError;
 
+    $errorCount=0;
 
     if (!empty($_POST))
         {
-        if(empty($_POST["cust"]["name"])){
+        if(empty($name) || !preg_match("/^[a-zA-Z \-.']{1,100}$/",$name)){
             $nameError="Please enter a valid name.";
+            $errorCount++;
         }
 
-        {
-        if(empty($_POST["cust"]["email"])){
+        if(empty($email) && filter_var($email)){
             $emailError="Please enter a valid email.";
             $errorCount++;
         }
-        }
 
-        {
-        if(empty($_POST["cust"]["mobile"])){
+        if(empty($mobile) || !preg_match("/^(\(04\)|04|\+614)( ?\d){8}$/",$mobile)){
             $mobileError="Please enter a valid mobile.";
             $errorCount++;
         }
-        }
 
-        {
-        if(empty($_POST["cust"]["card"])){
-            $cardError="Please enter a valid card.";
+        if(empty($card)|| !preg_match("/^(\d{4}[- ])(\d{4}[- ])(\d{4}[- ])(\d{4})|\d{16}$/",$card)){
+            $cardError="Please enter a valid credit card number.";
             $errorCount++;
         }
-        }
 
-    {
-        if(empty($_POST["cust"]["expiry"])){
-            $expiryError="Please enter a valid expiry.";
+        if(empty($expiry)){
+            $expiryError="Please enter a valid credit card expiry.";
             $errorCount++;
         }
+        if ($errorCount == "0"){
+            calculatePrice();
+            writeBookingToFile();
+            header("Location: receipt.php");
         }
     }
+}
+
+
+function calculatePrice(){
+
+    global $name;
+    global $email;
+    global $mobile;
+    global $card;
+    global $expiry;
+    global $movieid;
+    global $day;
+    global $hour;
+    global $sta;
+    global $stp;
+    global $stc;
+    global $fca;
+    global $fcp;
+    global $fcc;
+    global $totalprice;
+    $discount = '';
+    $priceObject = priceArray();
+
+    if($day == 'SAT' || $day == 'SUN'){
+        $discount = 'FullPrice';
+    }
+    else if($day != 'SAT' && $hour == '12:00' || $day != 'SUN' && $hour == '12:00' ){
+        $discount = 'DiscountPrice';
+    }
+    else if($day == 'MON' || $day == 'WED'){
+        $discount = 'DiscountPrice';
+    }
+    else {
+        $discount = 'FullPrice';
+    }
+
+    $totalprice = $totalprice + ($priceObject['STA'][$discount] * $sta);
+    $totalprice = $totalprice + ($priceObject['STP'][$discount] * $stp);
+    $totalprice = $totalprice + ($priceObject['STC'][$discount] * $stc);
+    $totalprice = $totalprice + ($priceObject['FCA'][$discount] * $fca);
+    $totalprice = $totalprice + ($priceObject['FCP'][$discount] * $fcp);
+    $totalprice = $totalprice + ($priceObject['FCC'][$discount] * $fcc);
+}
+
+function writeBookingToFile(){
+
+    global $name;
+    global $email;
+    global $mobile;
+    global $card;
+    global $expiry;
+    global $movieid;
+    global $day;
+    global $hour;
+    global $sta;
+    global $stp;
+    global $stc;
+    global $fca;
+    global $fcp;
+    global $fcc;
+    global $totalprice;
+
+    $file = fopen("bookings.txt","a");
+    flock($file, LOCK_EX);
+    fputcsv($file,[date('Y-m-d'),$name,$email,$mobile,$movieid,$day,$hour,$sta,$stp,$stc,$fca,$fcp,$fcc,number_format($totalprice,2)],"\t");
+    flock($file,LOCK_UN);
+    fclose($file);
 }
 
 ?>

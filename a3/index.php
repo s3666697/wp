@@ -66,10 +66,13 @@
             }
         }
 
-        function setHiddenFields(movieID, day, hour){
+        function setHiddenFields(movieID, movieTitle, day, hour){
+            console.log(movieID, movieTitle, day, hour);
             document.getElementById('movie[id]').value = movieID;
             document.getElementById('movie[day]').value = day;
             document.getElementById('movie[hour]').value = hour;
+            document.getElementById('SelectedMovie').innerHTML = movieTitle;
+
         }
 
         function calculatePrice(){
@@ -99,7 +102,7 @@
             totalPrice = totalPrice + (priceArrayJS["FCA"][discount] * document.getElementById('seats[FCA]').value);
             totalPrice = totalPrice + (priceArrayJS["FCP"][discount] * document.getElementById('seats[FCP]').value);
             totalPrice = totalPrice + (priceArrayJS["FCC"][discount] * document.getElementById('seats[FCC]').value);
-            document.getElementById('TotalPrice').innerHTML = totalPrice;
+            document.getElementById('TotalPrice').innerHTML = totalPrice.toFixed(2);
 
             console.log(seatType);
             console.log(day);
@@ -109,7 +112,6 @@
         }
 
         function validateForm(){
-            console.log("Doing PHP");
             <?php
             validateForm();
             ?>
@@ -219,7 +221,7 @@
                 <div class='SectionHeading'>Booking</div>
                 <div class='SectionContent'>
                     <p>Please complete the following information to complete your booking at Lunardo Cinema.</p>
-                    <form class='MakeBookingForm'action='index.php' method='post' target="_blank" onsubmit="validateForm()" oninput="calculatePrice()">
+                    <form class='MakeBookingForm' name='MakeBookingForm' action='index.php' method='post' target="_blank" onsubmit="validateForm()" oninput="calculatePrice()">
                         <input type='hidden' name='movie[id]' id='movie[id]' value='' required/>
                         <input type='hidden' name='movie[day]' id='movie[day]' value='' required/>
                         <input type='hidden' name='movie[hour]' id='movie[hour]' value='' required/>
@@ -339,9 +341,11 @@
                             <div class='FormHeading'>Expiry: </div>
                             <input type='month' name='cust[expiry]' value='' required/><br>
                             <span class='error' id='cust[expiry]'><?php echo $expiryError ?></span>
+                            <div class='FormHeading'>Movie Selected: <span id='SelectedMovie'></span></div>
                             <div class='FormHeading'>Total Price: $<span id='TotalPrice'></span></div>
                             <br>
                             <input type='submit' name='order' value='Order'/><br>
+                            <span class='error' id='movieError'></span>
                         </div>
                     </form>
                     <button type="button" id="Calculate" onClick="validateForm()">Click Me!</button>
