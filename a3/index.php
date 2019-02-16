@@ -93,18 +93,26 @@
                 discount = 'FullPrice';
             }
 
-            totalPrice = totalPrice + priceArrayJS["STA"][discount] * document.getElementById('seats[STA]').value;
-            totalPrice = totalPrice + priceArrayJS["STP"][discount] * document.getElementById('seats[STP]').value;
-            totalPrice = totalPrice + priceArrayJS["STC"][discount] * document.getElementById('seats[STC]').value;
-            totalPrice = totalPrice + priceArrayJS["FCA"][discount] * document.getElementById('seats[FCA]').value;
-            totalPrice = totalPrice + priceArrayJS["FCP"][discount] * document.getElementById('seats[FCP]').value;
-            totalPrice = totalPrice + priceArrayJS["FCC"][discount] * document.getElementById('seats[FCC]').value;
+            totalPrice = totalPrice + (priceArrayJS["STA"][discount] * document.getElementById('seats[STA]').value);
+            totalPrice = totalPrice + (priceArrayJS["STP"][discount] * document.getElementById('seats[STP]').value);
+            totalPrice = totalPrice + (priceArrayJS["STC"][discount] * document.getElementById('seats[STC]').value);
+            totalPrice = totalPrice + (priceArrayJS["FCA"][discount] * document.getElementById('seats[FCA]').value);
+            totalPrice = totalPrice + (priceArrayJS["FCP"][discount] * document.getElementById('seats[FCP]').value);
+            totalPrice = totalPrice + (priceArrayJS["FCC"][discount] * document.getElementById('seats[FCC]').value);
+            document.getElementById('TotalPrice').innerHTML = totalPrice;
 
             console.log(seatType);
             console.log(day);
             console.log(hour);
             console.log(totalPrice);
             console.log(discount);
+        }
+
+        function validateForm(){
+            console.log("Doing PHP");
+            <?php
+            validateForm();
+            ?>
         }
 
     </script>
@@ -211,14 +219,14 @@
                 <div class='SectionHeading'>Booking</div>
                 <div class='SectionContent'>
                     <p>Please complete the following information to complete your booking at Lunardo Cinema.</p>
-                    <form class='MakeBookingForm'action='index.php' method='post' target="_blank" onsubmit="calculatePrice()">
-                        <input type='hidden' name='movie[id]' id='movie[id]' value=''/>
-                        <input type='hidden' name='movie[day]' id='movie[day]' value=''/>
-                        <input type='hidden' name='movie[hour]' id='movie[hour]' value=''/>
+                    <form class='MakeBookingForm'action='index.php' method='post' target="_blank" onsubmit="validateForm()" oninput="calculatePrice()">
+                        <input type='hidden' name='movie[id]' id='movie[id]' value='' required/>
+                        <input type='hidden' name='movie[day]' id='movie[day]' value='' required/>
+                        <input type='hidden' name='movie[hour]' id='movie[hour]' value='' required/>
                         <div class=form>
                         <div class='FormHeading'>Standard Adult:</div>
                         <select name='seats[STA]' id='seats[STA]'>
-                            <option value='' selected>Please Select</option>
+                            <option value='0' selected>Please Select</option>
                                 <option value='1'>1</option>
                                 <option value='2'>2</option>
                                 <option value='3'>3</option>
@@ -230,10 +238,11 @@
                                 <option value='9'>9</option>
                                 <option value='10'>10</option>
                         </select>
+                        <span class='error' id='seats[STA]'></span>
                         <br>
                         <div class='FormHeading'>Standard Concession:</div>
                         <select name='seats[STP]' id='seats[STP]' >
-                            <option value='' selected>Please Select</option>
+                            <option value='0' selected>Please Select</option>
                                 <option value='1'>1</option>
                                 <option value='2'>2</option>
                                 <option value='3'>3</option>
@@ -245,10 +254,11 @@
                                 <option value='9'>9</option>
                                 <option value='10'>10</option>
                         </select>
+                        <span class='error' id='seats[STP]'></span>
                         <br>
                         <div class='FormHeading'>Standard Child:</div>
                         <select name='seats[STC]' id='seats[STC]'>
-                            <option value='' selected>Please Select</option>
+                            <option value='0' selected>Please Select</option>
                                 <option value='1'>1</option>
                                 <option value='2'>2</option>
                                 <option value='3'>3</option>
@@ -260,10 +270,11 @@
                                 <option value='9'>9</option>
                                 <option value='10'>10</option>
                         </select>
+                        <span class='error' id='seats[STC]'></span>
                         <br>
                         <div class='FormHeading'>First Class Adult:</div>
                         <select name='seats[FCA]' id='seats[FCA]'>
-                            <option value='' selected>Please Select</option>
+                            <option value='0' selected>Please Select</option>
                                 <option value='1'>1</option>
                                 <option value='2'>2</option>
                                 <option value='3'>3</option>
@@ -275,10 +286,11 @@
                                 <option value='9'>9</option>
                                 <option value='10'>10</option>
                         </select>
+                        <span class='error' id='seats[FCA]'></span>
                         <br>
                         <div class='FormHeading'>First Class Concession:</div>
                         <select name='seats[FCP]' id='seats[FCP]'>
-                            <option value='' selected>Please Select</option>
+                            <option value='0' selected>Please Select</option>
                                 <option value='1'>1</option>
                                 <option value='2'>2</option>
                                 <option value='3'>3</option>
@@ -290,10 +302,11 @@
                                 <option value='9'>9</option>
                                 <option value='10'>10</option>
                         </select>
+                        <span class='error' id='seats[FCP]'></span>
                         <br>
                         <div class='FormHeading'>First Class Child:</div>
                         <select name='seats[FCC]' id='seats[FCC]'>
-                            <option value='' selected>Please Select</option>
+                            <option value='0' selected>Please Select</option>
                                 <option value='1'>1</option>
                                 <option value='2'>2</option>
                                 <option value='3'>3</option>
@@ -305,24 +318,33 @@
                                 <option value='9'>9</option>
                                 <option value='10'>10</option>
                         </select>
+                        <span class='error' id='seats[FCC]'></span>
                         <br>
                         </div>
                         <div class=form>
-                        <div class='FormHeading'>Name: </div>
-                        <input type='text' name='cust[name]' value=''/><br>
-                        <div class='FormHeading'>Email: </div>
-                        <input type='email' name='cust[email]' value=''/><br>
-                        <div class='FormHeading'>Mobile: </div>
-                        <input type='tel' name='cust[mobile]' value=''/><br>
-                        <div class='FormHeading'>Credit Card: </div>
-                        <input type='text' name='cust[card]' value=''/><br>
-                        <div class='FormHeading'>Expiry: </div>
-                        <input type='month' name='cust[expiry]' value=''/><br>
-                        <div class='FormHeading'>Total Price:</div><br>
-                        <input type='submit' name='order' value='Order'/><br>
+                            <div class='FormHeading'>Name: </div>
+                            <!--<input type='text' name='cust[name]' value='' pattern="^[a-zA-Z \-.']{1,100}$" title='First name and last name are required.' required/><br>-->
+                            <input type='text' name='cust[name]' value=''/><br>
+                            <span class='error' id='cust[name]'><?php echo $nameError ?></span>
+                            <div class='FormHeading'>Email: </div>
+                            <!--<input type='email' name='cust[email]' value='' required/><br>-->
+                            <input type='email' name='cust[email]' value=''/><br>
+                            <span class='error' id='cust[email]'><?php echo $emailError ?></span>
+                            <div class='FormHeading'>Mobile: </div>
+                            <input type='tel' name='cust[mobile]' value='' pattern="^(\(04\)|04|\+614)( ?\d){8}$" required/><br>
+                            <span class='error' id='cust[mobile]'><?php echo $mobileError ?></span>
+                            <div class='FormHeading'>Credit Card: </div>
+                            <input type='text' name='cust[card]' value='' pattern="^(\d{4}[- ])(\d{4}[- ])(\d{4}[- ])(\d{4})|\d{16}$" required/><br>
+                            <span class='error' id='cust[card]'><?php echo $cardError ?></span>
+                            <div class='FormHeading'>Expiry: </div>
+                            <input type='month' name='cust[expiry]' value='' required/><br>
+                            <span class='error' id='cust[expiry]'><?php echo $expiryError ?></span>
+                            <div class='FormHeading'>Total Price: $<span id='TotalPrice'></span></div>
+                            <br>
+                            <input type='submit' name='order' value='Order'/><br>
                         </div>
                     </form>
-                    <button type="button" onclick="calculatePrice()">Click Me!</button>
+                    <button type="button" id="Calculate" onClick="validateForm()">Click Me!</button>
                 </div>
             </section>
         </main>

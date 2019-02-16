@@ -1,6 +1,16 @@
 <?php
-  session_start();
 
+session_start();
+$name='';
+$email='';
+$mobile='';
+$card='';
+$expiry='';
+$nameError='';
+$emailError='';
+$mobileError='';
+$cardError='';
+$expiryError='';
 
 // Prints data and shape/structure of data
 function preShow( $arr, $returnAsString=false ) {
@@ -226,9 +236,53 @@ foreach ( movieArray() as $movieId => $movie ) {
 }
 };
 
-function calculateTotalPrice(){
-    $total = 0;
+function validateForm(){
+    $errorCount=0;
+    global $nameError;
+    global $email;
+    global $mobile;
+    global $card;
+    global $expiry;
+    global $emailError;
+    global $mobileError;
+    global $cardError;
+    global $expiryError;
 
+
+    if (!empty($_POST))
+        {
+        if(empty($_POST["cust"]["name"])){
+            $nameError="Please enter a valid name.";
+        }
+
+        {
+        if(empty($_POST["cust"]["email"])){
+            $emailError="Please enter a valid email.";
+            $errorCount++;
+        }
+        }
+
+        {
+        if(empty($_POST["cust"]["mobile"])){
+            $mobileError="Please enter a valid mobile.";
+            $errorCount++;
+        }
+        }
+
+        {
+        if(empty($_POST["cust"]["card"])){
+            $cardError="Please enter a valid card.";
+            $errorCount++;
+        }
+        }
+
+    {
+        if(empty($_POST["cust"]["expiry"])){
+            $expiryError="Please enter a valid expiry.";
+            $errorCount++;
+        }
+        }
+    }
 }
 
 ?>
