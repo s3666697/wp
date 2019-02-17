@@ -7,6 +7,7 @@ $mobile=$_POST["cust"]["mobile"];
 $card=$_POST["cust"]["card"];
 $expiry=$_POST["cust"]["expiry"];
 $movieid=$_POST["movie"]["id"];
+$movietitle=$_POST["movie"]["title"];
 $day=$_POST["movie"]["day"];
 $hour=$_POST["movie"]["hour"];
 $sta=$_POST["seats"]["STA"];
@@ -22,6 +23,7 @@ $emailError='';
 $mobileError='';
 $cardError='';
 $expiryError='';
+$movieError='';
 
 
 
@@ -248,11 +250,15 @@ function validateForm(){
     global $mobile;
     global $card;
     global $expiry;
+    global $movieid;
+    global $totalprice;
+
     global $nameError;
     global $emailError;
     global $mobileError;
     global $cardError;
     global $expiryError;
+    global $movieError;
 
     $errorCount=0;
 
@@ -282,10 +288,16 @@ function validateForm(){
             $expiryError="Please enter a valid credit card expiry.";
             $errorCount++;
         }
+
+        if(empty($movieid)){
+            $movieError="Please select a movie.";
+            $errorCount++;
+        }
+
         if ($errorCount == "0"){
             calculatePrice();
             writeBookingToFile();
-            header("Location: receipt.php");
+            writeBookingToSession();
         }
     }
 }
@@ -308,6 +320,7 @@ function calculatePrice(){
     global $fcp;
     global $fcc;
     global $totalprice;
+
     $discount = '';
     $priceObject = priceArray();
 
@@ -330,6 +343,8 @@ function calculatePrice(){
     $totalprice = $totalprice + ($priceObject['FCA'][$discount] * $fca);
     $totalprice = $totalprice + ($priceObject['FCP'][$discount] * $fcp);
     $totalprice = $totalprice + ($priceObject['FCC'][$discount] * $fcc);
+
+
 }
 
 function writeBookingToFile(){
@@ -357,4 +372,176 @@ function writeBookingToFile(){
     fclose($file);
 }
 
+function writeBookingToSession(){
+
+    global $name;
+    global $email;
+    global $mobile;
+    global $card;
+    global $expiry;
+    global $movieid;
+    global $movietitle;
+    global $day;
+    global $hour;
+    global $sta;
+    global $stp;
+    global $stc;
+    global $fca;
+    global $fcp;
+    global $fcc;
+    global $totalprice;
+    $num = count($_SESSION++);
+
+    $_SESSION['cart'][$num]['cust']['name'] = $name;
+    $_SESSION['cart'][$num]['cust']['email'] = $email;
+    $_SESSION['cart'][$num]['cust']['mobile'] = $mobile;
+    $_SESSION['cart'][$num]['movie']['id'] = $movieid;
+    $_SESSION['cart'][$num]['movie']['title'] = $movietitle;
+    $_SESSION['cart'][$num]['movie']['day'] = $day;
+    $_SESSION['cart'][$num]['movie']['hour'] = $hour;
+    $_SESSION['cart'][$num]['seats']['STA'] = $sta;
+    $_SESSION['cart'][$num]['seats']['STP'] = $stp;
+    $_SESSION['cart'][$num]['seats']['STC'] = $stc;
+    $_SESSION['cart'][$num]['seats']['FCA'] = $fca;
+    $_SESSION['cart'][$num]['seats']['FCP'] = $fcp;
+    $_SESSION['cart'][$num]['seats']['FCC'] = $fcc;
+    $_SESSION['cart'][$num]['totalprice'] = $totalprice;
+
+}
+
+function submitOrder(){
+    if (!empty($_POST))
+        {
+    header("Location: receipt.php");
+    }
+}
+
+function printCustomerDetails(){
+    $customerNum = 1;
+    echo "<div class='ReceiptHeading'>Customer Details</div>
+    <table class='ReceiptTable'>
+        <tr>
+            <th>Customer Number</th>
+            <th>Customer Name</th>
+            <th>Customer Email</th>
+            <th>Customer Mobile</th>
+        </tr>";
+    foreach ($_SESSION[cart] as $cart => $item ) {
+        echo "<tr>
+                <td>$customerNum</td>
+                <td>{$item['cust']['name']}</td>
+                <td>{$item['cust']['email']}</td>
+                <td>{$item['cust']['mobile']}</td>
+            </tr>";
+        $customerNum++;
+    }
+
+    echo "</table>";
+}
+
+function printMovieDetails(){
+
+    $combinedtotalprice = 0;
+
+    foreach ($_SESSION[cart] as $cart => $item ) {
+        $combinedtotalprice += $item['totalprice'];
+    };
+
+    $gst = number_format($combinedtotalprice - ($combinedtotalprice / 1.10),2);
+
+    echo "<div class='ReceiptHeading'>Movie Details</div>";
+    echo "<table class='ReceiptTable'>
+            <tr>
+            <th>Movie Title</th>
+            <th>Day</th>
+            <th>Hour</th>
+            <th>STA</th>
+            <th>STP</th>
+            <th>STC</th>
+            <th>FCA</th>
+            <th>FCP</th>
+            <th>FCC</th>
+            <th>Price</th>
+            </tr>";
+    foreach ($_SESSION[cart] as $cart => $item ) {
+        echo "
+            <tr>
+                <td>{$item['movie']['title']}</td>
+                <td>{$item['movie']['day']}</td>
+                <td>{$item['movie']['hour']}</td>
+                <td>{$item['seats']['STA']}</td>
+                <td>{$item['seats']['STP']}</td>
+                <td>{$item['seats']['STC']}</td>
+                <td>{$item['seats']['FCA']}</td>
+                <td>{$item['seats']['FCP']}</td>
+                <td>{$item['seats']['FCC']}</td>
+                <td>$"; echo number_format($item['totalprice'],2); echo"</td>
+            </tr>
+        ";
+    }
+    echo "<tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>Total:</td>
+        <td>$";echo number_format($combinedtotalprice,2); echo"</td>
+        </tr>
+        <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>GST:</td>
+        <td>\${$gst}</td>
+        </tr>
+    </table>";
+}
+
+function printIndividualTicket(){
+    echo "<div class='ReceiptHeading'></div>";
+    foreach ($_SESSION[cart] as $cart => $item ) {
+        foreach($item['seats'] as $seat => $ticket){
+            for($i=0;$i<$ticket;$i++){
+                echo "<div class='IndividualTicket'>
+                    <div class='TicketType'>TICKET: ADMIT ONE</div>
+                    <div class='TicketBusinessInfo'>
+                    <div class='TicketBusinessName'>Lundaro Cinema</div>
+                    <div class='TicketBusinessPhone'>1300 222 444</div>
+                    <div class='TicketBusinessAddr'>123 Main Street, Brisbane, Qld, 4000.</div>
+                    </div>
+                    <div class='TicketMovieInfo'>
+                    <div class='TicketMovieTitle'>{$item['movie']['title']}</div>
+                    <div class='TicketMovieDay'>Day: {$item['movie']['day']}</div>
+                    <div class='TicketMovieTime'>Time: {$item['movie']['hour']}</div>
+                    <div class='TicketMovieSeat'>Seat: $seat</div>
+                    </div>
+                    </div>";
+                }
+        }
+    }
+}
+
+function printGroupTicket(){
+    echo "<div class='ReceiptHeading'></div>
+            <div class='GroupTicket'>
+            <div class='TicketType'>GROUP TICKET</div>
+            <div class='TicketBusinessInfo'>
+            <div class='TicketBusinessName'>Lundaro Cinema</div>
+            <div class='TicketBusinessPhone'>1300 222 444</div>
+            <div class='TicketBusinessAddr'>123 Main Street, Brisbane, Qld, 4000.</div>
+            </div>
+    ";
+    printMovieDetails();
+
+    echo "</div>";
+}
 ?>

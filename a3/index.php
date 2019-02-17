@@ -69,6 +69,7 @@
         function setHiddenFields(movieID, movieTitle, day, hour){
             console.log(movieID, movieTitle, day, hour);
             document.getElementById('movie[id]').value = movieID;
+            document.getElementById('movie[title]').value = movieTitle;
             document.getElementById('movie[day]').value = day;
             document.getElementById('movie[hour]').value = hour;
             document.getElementById('SelectedMovie').innerHTML = movieTitle;
@@ -78,6 +79,7 @@
         function calculatePrice(){
 
             var totalPrice = 0.00;
+            var gst = 0.00;
             var discount = null;
             var day = document.getElementById('movie[day]').value;
             var hour = document.getElementById('movie[hour]').value;
@@ -102,7 +104,10 @@
             totalPrice = totalPrice + (priceArrayJS["FCA"][discount] * document.getElementById('seats[FCA]').value);
             totalPrice = totalPrice + (priceArrayJS["FCP"][discount] * document.getElementById('seats[FCP]').value);
             totalPrice = totalPrice + (priceArrayJS["FCC"][discount] * document.getElementById('seats[FCC]').value);
+            gst = totalPrice - (totalPrice / 1.10)
+
             document.getElementById('TotalPrice').innerHTML = totalPrice.toFixed(2);
+            document.getElementById('GST').innerHTML = gst.toFixed(2);
 
             console.log(seatType);
             console.log(day);
@@ -112,9 +117,22 @@
         }
 
         function validateForm(){
+            console.log("Validating form.");
             <?php
             validateForm();
             ?>
+        }
+
+        function currentDate(){
+            var today = new Date();
+            var mm = today.getMonth()+2;
+            var yyyy = today.getFullYear();
+            today=yyyy+'-'+mm;
+            console.log(mm);
+            console.log(yyyy);
+            console.log(today);
+
+            document.getElementById("ccExpiry").setAttribute("min", today);
         }
 
     </script>
@@ -221,8 +239,9 @@
                 <div class='SectionHeading'>Booking</div>
                 <div class='SectionContent'>
                     <p>Please complete the following information to complete your booking at Lunardo Cinema.</p>
-                    <form class='MakeBookingForm' name='MakeBookingForm' action='index.php' method='post' target="_blank" onsubmit="validateForm()" oninput="calculatePrice()">
+                    <form class='MakeBookingForm' name='MakeBookingForm' action='' method='post' target="_self" onsubmit="validateForm()" oninput="calculatePrice(), currentDate()">
                         <input type='hidden' name='movie[id]' id='movie[id]' value='' required/>
+                        <input type='hidden' name='movie[title]' id='movie[title]' value='' required/>
                         <input type='hidden' name='movie[day]' id='movie[day]' value='' required/>
                         <input type='hidden' name='movie[hour]' id='movie[hour]' value='' required/>
                         <div class=form>
@@ -339,16 +358,17 @@
                             <input type='text' name='cust[card]' value='' pattern="^(\d{4}[- ])(\d{4}[- ])(\d{4}[- ])(\d{4})|\d{16}$" required/><br>
                             <span class='error' id='cust[card]'><?php echo $cardError ?></span>
                             <div class='FormHeading'>Expiry: </div>
-                            <input type='month' name='cust[expiry]' value='' required/><br>
+                            <input type='month' name='cust[expiry]' id='ccExpiry' value='' required/><br>
                             <span class='error' id='cust[expiry]'><?php echo $expiryError ?></span>
-                            <div class='FormHeading'>Movie Selected: <span id='SelectedMovie'></span></div>
-                            <div class='FormHeading'>Total Price: $<span id='TotalPrice'></span></div>
+                            <div class='FormHeading'>Movie: <span id='SelectedMovie'>No movie selected.</span></div>
+                            <span class='error' id='movieError'><?php echo $movieError ?></span><br>
+                            <div class='FormHeading'>Total Price (inc GST): $<span id='TotalPrice'>0.00</span></div>
+                            <div class='FormHeading'>GST: $<span id='GST'>0.00</span></div>
                             <br>
-                            <input type='submit' name='order' value='Order'/><br>
-                            <span class='error' id='movieError'></span>
+                            <input type='submit' name='order' class='FormButton' value='ADD TO ORDER'/><br>
                         </div>
                     </form>
-                    <button type="button" id="Calculate" onClick="validateForm()">Click Me!</button>
+                    <button type="button" class='FormButton' onClick="submitOrder()"><a href="./receipt.php">SUBMIT ORDER</a></button>
                 </div>
             </section>
         </main>
@@ -372,18 +392,22 @@
   </body>
 
 <div id=debug>
-    <?php
-//       printMovieArray();
-    ?>
-    <br><br>
-    <?php
-//        printPriceArray();
-    ?>
 
     <span>Debug Info:
     </span>
+    <br><br>
+    Post Array
     <?php
-        preShow($_POST); // ie echo a string
+        preShow($_POST);
+    ?>
+    <br><br>
+    Session Array
+    <?php
+        preShow($_SESSION);
+    ?>
+    <br><br>
+    <?php
+       printMyCode();
     ?>
 </div>
 </html>

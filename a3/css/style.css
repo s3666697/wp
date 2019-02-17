@@ -309,7 +309,7 @@ input, select {
     height: 40px;
 }
 
-input[name=order] {
+.FormButton {
     background-color: #30d367;
     font-family: 'Quicksand', sans-serif;
     color: black;
@@ -318,9 +318,11 @@ input[name=order] {
     font-size: 1.2em;
     border-radius: 5px;
     border: 2px solid white;
+    width: 80%;
+    height: 40px;
 }
 
-input[name=order]:hover {
+.FormButton:hover {
     background-color: #85E5A5;
     font-family: 'Quicksand', sans-serif;
     color: black;
@@ -329,6 +331,8 @@ input[name=order]:hover {
     font-size: 1.2em;
     border-radius: 5px;
     border: 2px solid #30d367;
+    width: 80%;
+    height: 40px;
 }
 
 footer{
@@ -357,4 +361,58 @@ footer{
 
 .error {
     color: red;
+}
+
+.Receipt {
+    background-color: white;
+    background-image: none;
+}
+
+html.Receipt{
+    width: 29.7cm;
+    height: 42cm;
+}
+
+.ReceiptHeading{
+    font-size: 2em;
+    text-align: center;
+    padding: 20px;
+    text-decoration: underline;
+}
+.IndividualTicket{
+    border: 2px black dashed;
+    margin: 10px 200px;
+}
+
+.GroupTicket{
+    border: 2px black dashed;
+    margin: 10px 200px;
+}
+
+.TicketType{
+    font-size: 1.5em;
+    font-weight: 800;
+    text-align: center;
+    border-bottom: 2px black solid;
+    padding: 30px;
+}
+
+.TicketBusinessInfo{
+    display: block;
+    padding: 10px 50px;
+}
+
+.TicketMovieInfo{
+    padding: 10px 50px;
+}
+
+.TicketMovieTitle{
+    font-size: 1.5em;
+    font-weight: 600;
+    text-align:center;
+}
+
+.ReceiptLetterhead {
+    display: inline-block;
+}
 }
