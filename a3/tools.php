@@ -1,21 +1,21 @@
 <?php
 
 session_start();
-$name=$_POST["cust"]["name"];
-$email=$_POST["cust"]["email"];
-$mobile=$_POST["cust"]["mobile"];
-$card=$_POST["cust"]["card"];
-$expiry=$_POST["cust"]["expiry"];
-$movieid=$_POST["movie"]["id"];
-$movietitle=$_POST["movie"]["title"];
-$day=$_POST["movie"]["day"];
-$hour=$_POST["movie"]["hour"];
-$sta=$_POST["seats"]["STA"];
-$stp=$_POST["seats"]["STP"];
-$stc=$_POST["seats"]["STC"];
-$fca=$_POST["seats"]["FCA"];
-$fcp=$_POST["seats"]["FCP"];
-$fcc=$_POST["seats"]["FCC"];
+$name='';
+$email='';
+$mobile='';
+$card='';
+$expiry='';
+$movieid='';
+$movietitle='';
+$day='';
+$hour='';
+$sta='';
+$stp='';
+$stc='';
+$fca='';
+$fcp='';
+$fcc='';
 $totalprice='';
 
 $nameError='';
@@ -281,42 +281,58 @@ function validateForm(){
 
     $errorCount=0;
 
-    if (!empty($_POST))
-        {
-        if(empty($name) || !preg_match("/^[a-zA-Z \-.']{1,100}$/",$name)){
+    if (!empty($_POST)){
+
+        if(empty($_POST["cust"]["name"]) || !preg_match("/^[a-zA-Z \-.']{1,100}$/",$_POST["cust"]["name"])){
             $nameError="Please enter a valid name.";
             $errorCount++;
         }
 
-        if(empty($email) && filter_var($email)){
+        if(empty($_POST["cust"]["email"]) && filter_var($_POST["cust"]["email"])){
             $emailError="Please enter a valid email.";
             $errorCount++;
         }
 
-        if(empty($mobile) || !preg_match("/^(\(04\)|04|\+614)( ?\d){8}$/",$mobile)){
+        if(empty($_POST["cust"]["mobile"]) || !preg_match("/^(\(04\)|04|\+614)( ?\d){8}$/",$_POST["cust"]["mobile"])){
             $mobileError="Please enter a valid mobile.";
             $errorCount++;
         }
 
-        if(empty($card) || !preg_match("/^(\d{4}[- ])(\d{4}[- ])(\d{4}[- ])(\d{4})|\d{16}$/",$card)){
+        if(empty($_POST["cust"]["card"]) || !preg_match("/^(\d{4}[- ])(\d{4}[- ])(\d{4}[- ])(\d{4})|\d{16}$/",$_POST["cust"]["card"])){
             $cardError="Please enter a valid credit card number.";
             $errorCount++;
         }
 
-        if(empty($expiry)) {
+        if(empty($_POST["cust"]["expiry"])) {
             $expiryError="Please enter a valid credit card expiry.";
             $errorCount++;
         }
 
-        if(empty($movieid)) {
+        if(empty($_POST["movie"]["id"])) {
             $movieError="Please select a movie.";
             $errorCount++;
         }
 
         if ($errorCount == "0"){
+            $name=$_POST["cust"]["name"];
+            $email=$_POST["cust"]["email"];
+            $mobile=$_POST["cust"]["mobile"];
+            $card=$_POST["cust"]["card"];
+            $expiry=$_POST["cust"]["expiry"];
+            $movieid=$_POST["movie"]["id"];
+            $movietitle=$_POST["movie"]["title"];
+            $day=$_POST["movie"]["day"];
+            $hour=$_POST["movie"]["hour"];
+            $sta=$_POST["seats"]["STA"];
+            $stp=$_POST["seats"]["STP"];
+            $stc=$_POST["seats"]["STC"];
+            $fca=$_POST["seats"]["FCA"];
+            $fcp=$_POST["seats"]["FCP"];
+            $fcc=$_POST["seats"]["FCC"];
             calculatePrice();
             writeBookingToFile();
             writeBookingToSession();
+            header("Location: index.php");
         }
     }
 }
@@ -409,7 +425,7 @@ function writeBookingToSession(){
     global $fcp;
     global $fcc;
     global $totalprice;
-    $num = count($_SESSION++);
+    $num = count($_SESSION[cart])+1;
 
     $_SESSION['cart'][$num]['cust']['name'] = $name;
     $_SESSION['cart'][$num]['cust']['email'] = $email;
