@@ -1,21 +1,21 @@
 <?php
 
 session_start();
-$name='';
-$email='';
-$mobile='';
-$card='';
-$expiry='';
-$movieid='';
-$movietitle='';
-$day='';
-$hour='';
-$sta='';
-$stp='';
-$stc='';
-$fca='';
-$fcp='';
-$fcc='';
+$name=$_POST["cust"]["name"];
+$email=$_POST["cust"]["email"];
+$mobile=$_POST["cust"]["mobile"];
+$card=$_POST["cust"]["card"];
+$expiry=$_POST["cust"]["expiry"];
+$movieid=$_POST["movie"]["id"];
+$movietitle=$_POST["movie"]["title"];
+$day=$_POST["movie"]["day"];
+$hour=$_POST["movie"]["hour"];
+$sta=$_POST["seats"]["STA"];
+$stp=$_POST["seats"]["STP"];
+$stc=$_POST["seats"]["STC"];
+$fca=$_POST["seats"]["FCA"];
+$fcp=$_POST["seats"]["FCP"];
+$fcc=$_POST["seats"]["FCC"];
 $totalprice='';
 
 $nameError='';
@@ -62,6 +62,10 @@ function styleCurrentNavLink( $css ) {
   $bits = explode('/',$here);
   $filename = $bits[count($bits)-1];
   echo "<style>nav a[href$='$filename'] { $css }</style>";
+}
+
+function clearSession (){
+    //unset($_SESSION[cart]);
 }
 
 //Array of movie information
@@ -279,22 +283,6 @@ function validateForm(){
 
     if (!empty($_POST))
         {
-        $name=$_POST["cust"]["name"];
-        $email=$_POST["cust"]["email"];
-        $mobile=$_POST["cust"]["mobile"];
-        $card=$_POST["cust"]["card"];
-        $expiry=$_POST["cust"]["expiry"];
-        $movieid=$_POST["movie"]["id"];
-        $movietitle=$_POST["movie"]["title"];
-        $day=$_POST["movie"]["day"];
-        $hour=$_POST["movie"]["hour"];
-        $sta=$_POST["seats"]["STA"];
-        $stp=$_POST["seats"]["STP"];
-        $stc=$_POST["seats"]["STC"];
-        $fca=$_POST["seats"]["FCA"];
-        $fcp=$_POST["seats"]["FCP"];
-        $fcc=$_POST["seats"]["FCC"];
-
         if(empty($name) || !preg_match("/^[a-zA-Z \-.']{1,100}$/",$name)){
             $nameError="Please enter a valid name.";
             $errorCount++;
@@ -421,7 +409,7 @@ function writeBookingToSession(){
     global $fcp;
     global $fcc;
     global $totalprice;
-    $num = count($_SESSION[cart]++);
+    $num = count($_SESSION++);
 
     $_SESSION['cart'][$num]['cust']['name'] = $name;
     $_SESSION['cart'][$num]['cust']['email'] = $email;

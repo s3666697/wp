@@ -119,6 +119,7 @@
         function validateForm(){
             console.log("Validating form.");
             <?php
+            //writeBookingToSession();
             validateForm();
             ?>
         }
@@ -239,7 +240,7 @@
                 <div class='SectionHeading'>Booking</div>
                 <div class='SectionContent'>
                     <p>Please complete the following information to complete your booking at Lunardo Cinema.</p>
-                    <form class='MakeBookingForm' name='MakeBookingForm' action='' method='post' target="_self" onsubmit="validateForm()" oninput="calculatePrice(), currentDate()">
+                    <form class='MakeBookingForm' name='MakeBookingForm' action='' method='post' target="_blank" onsubmit="validateForm()" oninput="calculatePrice(), currentDate()">
                         <input type='hidden' name='movie[id]' id='movie[id]' value='' required/>
                         <input type='hidden' name='movie[title]' id='movie[title]' value='' required/>
                         <input type='hidden' name='movie[day]' id='movie[day]' value='' required/>
