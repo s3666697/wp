@@ -1,21 +1,21 @@
 <?php
 
 session_start();
-$name=$_POST["cust"]["name"];
-$email=$_POST["cust"]["email"];
-$mobile=$_POST["cust"]["mobile"];
-$card=$_POST["cust"]["card"];
-$expiry=$_POST["cust"]["expiry"];
-$movieid=$_POST["movie"]["id"];
-$movietitle=$_POST["movie"]["title"];
-$day=$_POST["movie"]["day"];
-$hour=$_POST["movie"]["hour"];
-$sta=$_POST["seats"]["STA"];
-$stp=$_POST["seats"]["STP"];
-$stc=$_POST["seats"]["STC"];
-$fca=$_POST["seats"]["FCA"];
-$fcp=$_POST["seats"]["FCP"];
-$fcc=$_POST["seats"]["FCC"];
+$name='';
+$email='';
+$mobile='';
+$card='';
+$expiry='';
+$movieid='';
+$movietitle='';
+$day='';
+$hour='';
+$sta='';
+$stp='';
+$stc='';
+$fca='';
+$fcp='';
+$fcc='';
 $totalprice='';
 
 $nameError='';
@@ -176,25 +176,25 @@ function printMoviesShowing(){
     <div class='MovieSessionsTitle'>Sessions Available:
         <div class='MovieSessions'>
             <ul>";
-                if($movie['sessions']['monday'] !== NULL){
+                if(!empty($movie['sessions']['monday'])){
                     echo "<li>MON - {$movie['sessions']['monday']}</li>";
                 };
-                if($movie['sessions']['tuesday'] !== NULL){
+                if(!empty($movie['sessions']['tuesday'])){
                     echo "<li>TUE - {$movie['sessions']['tuesday']}</li>";
                 };
-                if($movie['sessions']['wednesday'] !== NULL){
+                if(!empty($movie['sessions']['wednesday'])){
                     echo "<li>WED - {$movie['sessions']['wednesday']}</li>";
                 };
-                if($movie['sessions']['thursday'] !== NULL){
+                if(!empty($movie['sessions']['thursday'])){
                     echo "<li>THU - {$movie['sessions']['thursday']}</li>";
                 };
-                if($movie['sessions']['friday'] !== NULL){
+                if(!empty($movie['sessions']['friday'])){
                     echo "<li>FRI - {$movie['sessions']['friday']}</li>";
                 };
-                if($movie['sessions']['saturday'] !== NULL){
+                if(!empty($movie['sessions']['saturday'])){
                     echo "<li>SAT - {$movie['sessions']['saturday']}</li>";
                 };
-                if($movie['sessions']['sunday'] !== NULL){
+                if(!empty($movie['sessions']['sunday'])){
                     echo "<li>SUN - {$movie['sessions']['sunday']}</li>";
                 };
             echo
@@ -217,25 +217,25 @@ foreach ( movieArray() as $movieId => $movie ) {
         <iframe id='ytplayer' type='text/html' width='640' height='360' src='{$movie['trailer']}'></iframe><br>
         <div class='MakeABooking'>Make a Booking:</div>";
 
-        if($movie['sessions']['monday'] !== NULL){
+        if(!empty($movie['sessions']['monday'])){
             echo "<button class='SessionTimesButton' onclick=\"setHiddenFields('{$movieId}','{$movie['title']}', 'MON', '{$movie['sessions']['monday']}')\" type='button'>MON - {$movie['sessions']['monday']}</button>";
         };
-        if($movie['sessions']['tuesday'] !== NULL){
+        if(!empty($movie['sessions']['tuesday'])){
                 echo "<button class='SessionTimesButton' onclick=\"setHiddenFields('{$movieId}','{$movie['title']}', 'TUE', '{$movie['sessions']['tuesday']}')\" type='button'>TUE - {$movie['sessions']['tuesday']}</button>";
         };
-        if($movie['sessions']['wednesday'] !== NULL){
+        if(!empty($movie['sessions']['wednesday'])){
                 echo "<button class='SessionTimesButton' onclick=\"setHiddenFields('{$movieId}','{$movie['title']}', 'WED', '{$movie['sessions']['wednesday']}')\" type='button'>WED - {$movie['sessions']['wednesday']}</button>";
         };
-        if($movie['sessions']['thursday'] !== NULL){
+        if(!empty($movie['sessions']['thursday'])){
                 echo "<button class='SessionTimesButton' onclick=\"setHiddenFields('{$movieId}','{$movie['title']}', 'THU', '{$movie['sessions']['thursday']}')\" type='button'>THU - {$movie['sessions']['thursday']}</button>";
         };
-        if($movie['sessions']['friday'] !== NULL){
+        if(!empty($movie['sessions']['friday'])){
                 echo "<button class='SessionTimesButton' onclick=\"setHiddenFields('{$movieId}','{$movie['title']}', 'FRI', '{$movie['sessions']['friday']}')\" type='button'>FRI - {$movie['sessions']['friday']}</button>";
         };
-        if($movie['sessions']['saturday'] !== NULL){
+        if(!empty($movie['sessions']['saturday'])){
                 echo "<button class='SessionTimesButton' onclick=\"setHiddenFields('{$movieId}','{$movie['title']}', 'SAT', '{$movie['sessions']['saturday']}')\" type='button'>SAT - {$movie['sessions']['saturday']}</button>";
         };
-        if($movie['sessions']['sunday'] !== NULL){
+        if(!empty($movie['sessions']['sunday'])){
                 echo "<button class='SessionTimesButton' onclick=\"setHiddenFields('{$movieId}','{$movie['title']}', 'SUN', '{$movie['sessions']['sunday']}')\" type='button'>SUN - {$movie['sessions']['sunday']}</button>";
         };
     echo "</div>
@@ -252,6 +252,21 @@ function validateForm(){
     global $expiry;
     global $movieid;
     global $totalprice;
+    global $name;
+    global $email;
+    global $mobile;
+    global $card;
+    global $expiry;
+    global $movieid;
+    global $movietitle;
+    global $day;
+    global $hour;
+    global $sta;
+    global $stp;
+    global $stc;
+    global $fca;
+    global $fcp;
+    global $fcc;
 
     global $nameError;
     global $emailError;
@@ -264,6 +279,22 @@ function validateForm(){
 
     if (!empty($_POST))
         {
+        $name=$_POST["cust"]["name"];
+        $email=$_POST["cust"]["email"];
+        $mobile=$_POST["cust"]["mobile"];
+        $card=$_POST["cust"]["card"];
+        $expiry=$_POST["cust"]["expiry"];
+        $movieid=$_POST["movie"]["id"];
+        $movietitle=$_POST["movie"]["title"];
+        $day=$_POST["movie"]["day"];
+        $hour=$_POST["movie"]["hour"];
+        $sta=$_POST["seats"]["STA"];
+        $stp=$_POST["seats"]["STP"];
+        $stc=$_POST["seats"]["STC"];
+        $fca=$_POST["seats"]["FCA"];
+        $fcp=$_POST["seats"]["FCP"];
+        $fcc=$_POST["seats"]["FCC"];
+
         if(empty($name) || !preg_match("/^[a-zA-Z \-.']{1,100}$/",$name)){
             $nameError="Please enter a valid name.";
             $errorCount++;
@@ -279,17 +310,17 @@ function validateForm(){
             $errorCount++;
         }
 
-        if(empty($card)|| !preg_match("/^(\d{4}[- ])(\d{4}[- ])(\d{4}[- ])(\d{4})|\d{16}$/",$card)){
+        if(empty($card) || !preg_match("/^(\d{4}[- ])(\d{4}[- ])(\d{4}[- ])(\d{4})|\d{16}$/",$card)){
             $cardError="Please enter a valid credit card number.";
             $errorCount++;
         }
 
-        if(empty($expiry)){
+        if(empty($expiry)) {
             $expiryError="Please enter a valid credit card expiry.";
             $errorCount++;
         }
 
-        if(empty($movieid)){
+        if(empty($movieid)) {
             $movieError="Please select a movie.";
             $errorCount++;
         }
@@ -390,7 +421,7 @@ function writeBookingToSession(){
     global $fcp;
     global $fcc;
     global $totalprice;
-    $num = count($_SESSION++);
+    $num = count($_SESSION[cart]++);
 
     $_SESSION['cart'][$num]['cust']['name'] = $name;
     $_SESSION['cart'][$num]['cust']['email'] = $email;
